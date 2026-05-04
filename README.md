@@ -1,6 +1,6 @@
-# EventPass Landing Page
+# EventPass Suite Website
 
-This repository contains the landing page for the **EventPass** project, developed by **WhiteWall Digital Solutions**. It is designed to showcase the features, modules, and engagement capabilities of the EventPass platform.
+This repository contains the landing page for the **EventPass Suite** project, developed by **WhiteWall Digital Solutions**. It is designed to showcase the features, modules, and engagement capabilities of the EventPass platform.
 
 ## Overview
 The landing page serves as the digital storefront for EventPass, highlighting the engagement tools, smart check-in systems, and real-time analytics.
