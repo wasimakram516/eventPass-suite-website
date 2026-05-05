@@ -56,14 +56,6 @@ const theme = createTheme({
           borderRadius: '30px',
           padding: '10px 24px',
         },
-        containedPrimary: {
-          background: 'linear-gradient(135deg, #00C8FF 0%, #0086FF 100%)',
-          boxShadow: '0 4px 14px 0 rgba(0, 200, 255, 0.39)',
-          '&:hover': {
-            background: 'linear-gradient(135deg, #00AEE0 0%, #0076E0 100%)',
-            boxShadow: '0 6px 20px rgba(0, 200, 255, 0.23)',
-          },
-        },
         outlined: {
           borderColor: 'rgba(255, 255, 255, 0.3)',
           color: '#FFFFFF',
@@ -73,6 +65,19 @@ const theme = createTheme({
           },
         },
       },
+      variants: [
+        {
+          props: { variant: 'contained', color: 'primary' },
+          style: {
+            background: 'linear-gradient(135deg, #00C8FF 0%, #0086FF 100%)',
+            boxShadow: '0 4px 14px 0 rgba(0, 200, 255, 0.39)',
+            '&:hover': {
+              background: 'linear-gradient(135deg, #00AEE0 0%, #0076E0 100%)',
+              boxShadow: '0 6px 20px rgba(0, 200, 255, 0.23)',
+            },
+          },
+        },
+      ],
     },
     MuiCard: {
       styleOverrides: {
