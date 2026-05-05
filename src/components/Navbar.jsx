@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 import React, { useState, useEffect } from 'react';
 import {
   AppBar,
@@ -15,14 +15,16 @@ import {
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import Image from 'next/image';
+import { motion } from 'framer-motion';
+import Link from 'next/link';
 
 const navItems = [
-  { label: 'Home', href: '#', active: true },
-  { label: 'Features', href: '#features' },
-  { label: 'Modules', href: '#modules' },
-  { label: 'How It Works', href: '#how-it-works' },
-  { label: 'Events', href: '#events' },
-  { label: 'Contact Us', href: '#contact' },
+  { label: 'Home', href: '/', isPage: true },
+  { label: 'Features', href: '/#features' },
+  { label: 'Modules', href: '/#modules' },
+  { label: 'How It Works', href: '/#how-it-works' },
+  { label: 'Events', href: '/#events' },
+  { label: 'Contact Us', href: '/contact', isPage: true },
 ];
 
 export default function Navbar() {
@@ -35,28 +37,52 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const handleLinkClick = (item) => {
+    setMobileOpen(false);
+    
+    if (item.isPage) return;
+
+    if (item.href === '/') {
+       window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else if (item.href.startsWith('/#')) {
+       const id = item.href.replace('/', '');
+       const el = document.querySelector(id);
+       if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <>
       <AppBar
+        component={motion.header}
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         position="fixed"
         elevation={0}
         sx={{
-          bgcolor: '#000000',
+          bgcolor: scrolled ? 'rgba(0,0,0,0.85)' : '#000000',
           backdropFilter: 'blur(14px)',
           WebkitBackdropFilter: 'blur(14px)',
           borderBottom: '1px solid rgba(255,255,255,0.06)',
-          backgroundImage: 'none',
+          backgroundImage: scrolled ? 'none' : 'none',
           transition: 'all 0.3s ease',
-          py: { xs: 0.5, md: 0.5 },
+          py: { xs: 0.5, md: 1 },
+          zIndex: 1300,
         }}
       >
         <Container maxWidth="xl" sx={{ px: { xs: 3, sm: 5, md: 8, lg: 10 } }}>
           <Toolbar disableGutters sx={{ justifyContent: 'space-between', minHeight: { xs: 64, md: 72 } }}>
-            <Box sx={{ position: 'relative', width: { xs: 150, md: 210 }, height: { xs: 42, md: 54 }, flexShrink: 0 }}>
+            <Box 
+              component={Link} 
+              href="/"
+              sx={{ position: 'relative', width: { xs: 150, md: 210 }, height: { xs: 42, md: 54 }, flexShrink: 0, cursor: 'pointer' }}
+            >
               <Image
                 src="/logo.webp"
                 alt="eventPass"
                 fill
+                sizes="(max-width: 900px) 150px, 210px"
                 style={{ objectFit: 'contain', objectPosition: 'left center' }}
                 priority
               />
@@ -74,10 +100,12 @@ export default function Navbar() {
               {navItems.map((item) => (
                 <Button
                   key={item.label}
-                  href={item.href}
+                  component={item.isPage ? Link : 'button'}
+                  href={item.isPage ? item.href : undefined}
+                  onClick={() => handleLinkClick(item)}
                   disableRipple
                   sx={{
-                    color: item.active ? '#00C8FF' : 'rgba(255,255,255,0.85)',
+                    color: 'rgba(255,255,255,0.85)',
                     fontSize: '0.82rem',
                     fontWeight: 500,
                     textTransform: 'none',
@@ -100,19 +128,19 @@ export default function Navbar() {
               <Button
                 variant="contained"
                 sx={{
+                  bgcolor: '#00C8FF',
+                  color: '#000',
+                  fontWeight: 700,
+                  fontSize: '0.78rem',
+                  textTransform: 'none',
                   px: 3,
                   py: 1,
-                  fontSize: '0.78rem',
-                  fontWeight: 700,
-                  letterSpacing: 0.8,
-                  borderRadius: '40px',
-                  background: '#00C8FF',
-                  color: '#000',
-                  boxShadow: '0 4px 18px rgba(0,200,255,0.3)',
-                  textTransform: 'uppercase',
+                  borderRadius: '100px',
+                  boxShadow: '0 4px 14px rgba(0, 200, 255, 0.3)',
+                  textDecoration: 'none',
                   '&:hover': {
-                    background: '#00b8ee',
-                    boxShadow: '0 4px 22px rgba(0,200,255,0.45)',
+                    bgcolor: '#00b8ee',
+                    boxShadow: '0 6px 20px rgba(0, 200, 255, 0.4)',
                   },
                 }}
               >
@@ -120,11 +148,12 @@ export default function Navbar() {
               </Button>
             </Box>
 
-            {/* Mobile hamburger */}
             <IconButton
               color="inherit"
+              aria-label="open drawer"
+              edge="start"
               onClick={() => setMobileOpen(true)}
-              sx={{ display: { md: 'none' } }}
+              sx={{ display: { md: 'none' }, ml: 2, zIndex: 1400 }}
             >
               <MenuIcon />
             </IconButton>
@@ -132,50 +161,76 @@ export default function Navbar() {
         </Container>
       </AppBar>
 
-      {/* Mobile Drawer */}
       <Drawer
         anchor="right"
         open={mobileOpen}
         onClose={() => setMobileOpen(false)}
-        PaperProps={{ sx: { width: '75%', bgcolor: '#060B18', color: 'white' } }}
+        PaperProps={{
+          sx: {
+            width: '100%',
+            maxWidth: 300,
+            bgcolor: '#000',
+            backgroundImage: 'none',
+            borderLeft: '1px solid rgba(255,255,255,0.1)',
+            zIndex: 1500,
+          },
+        }}
       >
-        <Box sx={{ p: 2.5, display: 'flex', justifyContent: 'flex-end' }}>
-          <IconButton onClick={() => setMobileOpen(false)} color="inherit">
-            <CloseIcon />
-          </IconButton>
-        </Box>
-        <List sx={{ pt: 0, px: 2 }}>
-          {navItems.map((item) => (
-            <ListItem
-              key={item.label}
-              component="a"
-              href={item.href}
-              onClick={() => setMobileOpen(false)}
-              sx={{ mb: 1, borderRadius: 2, color: item.active ? '#00C8FF' : 'white' }}
-            >
-              <ListItemText
-                primary={item.label}
-                primaryTypographyProps={{ fontWeight: item.active ? 700 : 500, fontSize: '1.1rem' }}
-              />
-            </ListItem>
-          ))}
-          <Box sx={{ mt: 4, px: 1 }}>
-            <Button
-              fullWidth
-              variant="contained"
-              sx={{
-                py: 1.5,
-                borderRadius: '40px',
-                fontWeight: 700,
-                background: '#00C8FF',
-                color: '#000',
-                '&:hover': { background: '#00b8ee' },
-              }}
-            >
-              Book a Demo
-            </Button>
+        <Box sx={{ p: 3 }}>
+          <Box sx={{ display: 'flex', justifyContent: 'flex-end', mb: 4 }}>
+            <IconButton onClick={() => setMobileOpen(false)} sx={{ color: '#fff' }}>
+              <CloseIcon />
+            </IconButton>
           </Box>
-        </List>
+          <List>
+            {navItems.map((item) => (
+              <ListItem
+                key={item.label}
+                component={item.isPage ? Link : 'button'}
+                href={item.isPage ? item.href : undefined}
+                onClick={() => handleLinkClick(item)}
+                sx={{
+                  py: 2,
+                  color: '#fff',
+                  borderBottom: '1px solid rgba(255,255,255,0.05)',
+                  textAlign: 'left',
+                  width: '100%',
+                  bgcolor: 'transparent',
+                  border: 'none',
+                  display: 'flex',
+                  justifyContent: 'flex-start',
+                  cursor: 'pointer',
+                  '&:hover': {
+                    color: '#00C8FF',
+                  }
+                }}
+              >
+                <ListItemText
+                  primary={item.label}
+                  primaryTypographyProps={{
+                    sx: { fontSize: '1.1rem', fontWeight: 600 },
+                  }}
+                />
+              </ListItem>
+            ))}
+            <ListItem sx={{ mt: 4, px: 0 }}>
+              <Button
+                fullWidth
+                variant="contained"
+                sx={{
+                  bgcolor: '#00C8FF',
+                  color: '#000',
+                  fontWeight: 700,
+                  py: 1.5,
+                  borderRadius: '12px',
+                }}
+                onClick={() => handleLinkClick({ href: '/contact', isPage: true })}
+              >
+                Book a Demo
+              </Button>
+            </ListItem>
+          </List>
+        </Box>
       </Drawer>
     </>
   );

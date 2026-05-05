@@ -2,6 +2,7 @@
 import React from 'react';
 import { Box } from '@mui/material';
 import HorizontalCarousel from './HorizontalCarousel';
+import { MotionBox, fadeInUp } from './Animations';
 
 const clientLogos = [
   {
@@ -105,16 +106,23 @@ export default function PartnersSection() {
         py: { xs: 1, md: 1 },
       }}
     >
-      <HorizontalCarousel
-        items={clientLogos}
-        showBorders={true}
-        maxWidth="xl"
-        itemHeight={{ xs: 48, sm: 60, md: 72 }}
-        itemMaxWidth={{ xs: 140, sm: 180, md: 220 }}
-        containerPadding={{ xs: 3, md: 4.5 }}
-        itemPadding={{ xs: 4, sm: 5 }}
-        pauseOnHover={true}
-      />
+      <MotionBox
+        variants={fadeInUp}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+      >
+        <HorizontalCarousel
+          items={clientLogos}
+          showBorders={true}
+          maxWidth="xl"
+          itemHeight={{ xs: 48, sm: 60, md: 72 }}
+          itemMaxWidth={{ xs: 140, sm: 180, md: 220 }}
+          containerPadding={{ xs: 3, md: 4.5 }}
+          itemPadding={{ xs: 4, sm: 5 }}
+          pauseOnHover={true}
+        />
+      </MotionBox>
     </Box>
   );
 }

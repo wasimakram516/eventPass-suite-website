@@ -2,6 +2,7 @@
 import React from 'react';
 import { Box, Typography, Container } from '@mui/material';
 import Image from 'next/image';
+import { AnimatedNumber, MotionBox, fadeInUp, staggerContainer, scanlineAnimation } from './Animations';
 
 const cardSx = {
   bgcolor: 'rgba(8,12,24,0.9)',
@@ -15,7 +16,25 @@ const cardSx = {
   flexDirection: 'column',
   alignItems: 'center',
   textAlign: 'center',
+  overflow: 'hidden',
+  position: 'relative',
 };
+
+const ScanLine = () => (
+  <MotionBox
+    variants={scanlineAnimation}
+    animate="animate"
+    sx={{
+      position: 'absolute',
+      left: 0,
+      width: '100%',
+      height: '30px',
+      background: 'linear-gradient(180deg, transparent, rgba(0, 200, 255, 0.2), transparent)',
+      zIndex: 5,
+      pointerEvents: 'none',
+    }}
+  />
+);
 
 const numberSx = {
   fontWeight: 800,
@@ -64,7 +83,11 @@ export default function StatsAndProductSection() {
         sx={{ position: 'relative', zIndex: 1, px: { xs: 3, sm: 5, md: 6 } }}
       >
         {/* Wrapper */}
-        <Box
+        <MotionBox
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1, margin: "0px 0px -5% 0px" }}
           sx={{
             position: 'relative',
             width: '100%',
@@ -72,29 +95,32 @@ export default function StatsAndProductSection() {
           }}
         >
           {/* Top card */}
-          <Box
+          <MotionBox
+            variants={fadeInUp}
             sx={{
               ...cardSx,
               position: 'absolute',
               top: { xs: '8%', md: '0%' },
               left: '50%',
-              transform: 'translateX(-50%)',
+              transform: 'translateX(-50%) !important',
               zIndex: 2,
               px: { xs: 3.5, md: 6 },
               py: { xs: 2, md: 2.5 },
               minWidth: { xs: 100, md: 260 },
             }}
           >
+            <ScanLine />
             <Typography sx={{ ...numberSx, fontSize: { xs: '2rem', md: '3rem', lg: '3.4rem' } }}>
-              23,299+
+              <AnimatedNumber value={23299} suffix="+" />
             </Typography>
             <Typography sx={{ ...labelSx, fontSize: { xs: '0.78rem', md: '0.86rem' }, mt: 1.5 }}>
               Registrations Managed
             </Typography>
-          </Box>
+          </MotionBox>
 
           {/* Left card */}
-          <Box
+          <MotionBox
+            variants={fadeInUp}
             sx={{
               ...cardSx,
               position: 'absolute',
@@ -106,16 +132,18 @@ export default function StatsAndProductSection() {
               minWidth: { xs: 100, md: 210 },
             }}
           >
+            <ScanLine />
             <Typography sx={{ ...numberSx, fontSize: { xs: '2rem', md: '2.8rem', lg: '3rem' } }}>
-              224+
+              <AnimatedNumber value={224} suffix="+" />
             </Typography>
             <Typography sx={{ ...labelSx, fontSize: { xs: '0.75rem', md: '0.82rem' }, mt: 1.5 }}>
               Successful Deployments
             </Typography>
-          </Box>
+          </MotionBox>
 
           {/* Right card */}
-          <Box
+          <MotionBox
+            variants={fadeInUp}
             sx={{
               ...cardSx,
               position: 'absolute',
@@ -126,17 +154,20 @@ export default function StatsAndProductSection() {
               py: { xs: 2, md: 3.5 },
               minWidth: { xs: 100, md: 190 },
             }}
-          >
-            <Typography sx={{ ...numberSx, fontSize: { xs: '2rem', md: '2.6rem', lg: '3rem' } }}>
-              15+
+          >            <ScanLine />            <Typography sx={{ ...numberSx, fontSize: { xs: '2rem', md: '2.6rem', lg: '3rem' } }}>
+              <AnimatedNumber value={15} suffix="+" />
             </Typography>
             <Typography sx={{ ...labelSx, fontSize: { xs: '0.75rem', md: '0.85rem' }, mt: 1.5 }}>
               Event App Modules
             </Typography>
-          </Box>
+          </MotionBox>
 
           {/* Image */}
-          <Box
+          <MotionBox
+            initial={{ opacity: 0, scale: 0.9, y: 50 }}
+            whileInView={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+            viewport={{ once: true }}
             sx={{
               position: 'absolute',
               top: { xs: '22%', sm: '20%', md: '16%' },
@@ -152,10 +183,11 @@ export default function StatsAndProductSection() {
               src="/eventpass.webp"
               alt="EventPass Platform Mockup"
               fill
+              sizes="(max-width: 900px) 100vw, 80vw"
               style={{ objectFit: 'contain', objectPosition: 'bottom center' }}
             />
-          </Box>
-        </Box>
+          </MotionBox>
+        </MotionBox>
       </Container>
     </Box>
   );

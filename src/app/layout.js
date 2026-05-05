@@ -1,4 +1,6 @@
 import ThemeRegistry from '@/styles/themeRegistry.js';
+import { Suspense } from 'react';
+import ClientLayout from '@/components/ClientLayout';
 
 export const metadata = {
   title: 'EventPass — The ALL-IN-ONE Event Engagement Suite',
@@ -18,7 +20,11 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body>
-        <ThemeRegistry>{children}</ThemeRegistry>
+        <ThemeRegistry>
+          <ClientLayout>
+            {children}
+          </ClientLayout>
+        </ThemeRegistry>
       </body>
     </html>
   );

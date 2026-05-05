@@ -2,28 +2,41 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { Box, Typography, Button, Container } from '@mui/material';
 import Image from 'next/image';
+import env from '@/config/env';
+import { AnimatedNumber, MotionBox, fadeInUp, staggerContainer } from './Animations';
 
 const DESIGN_W = 700;
 const DESIGN_H = 580;
 
 export default function HeroSection() {
   const rightOuterRef = useRef(null);
-  const [scale, setScale] = useState(1);
+  const [scale, setScale] = useState(0.5);
 
   const measure = useCallback(() => {
     if (rightOuterRef.current) {
       const w = rightOuterRef.current.offsetWidth;
       const isMobile = window.innerWidth < 900;
       const baseScale = w / DESIGN_W;
-      setScale(Math.min(1, isMobile ? baseScale * 0.75 : baseScale));
+      const calculatedScale = Math.min(1.2, isMobile ? baseScale * 0.7 : baseScale);
+      setScale(calculatedScale);
     }
   }, []);
 
   useEffect(() => {
     measure();
+    const timer1 = setTimeout(measure, 100);
+    const timer2 = setTimeout(measure, 500);
+
     const ro = new ResizeObserver(measure);
     if (rightOuterRef.current) ro.observe(rightOuterRef.current);
-    return () => ro.disconnect();
+    
+    window.addEventListener('resize', measure);
+    return () => {
+      ro.disconnect();
+      window.removeEventListener('resize', measure);
+      clearTimeout(timer1);
+      clearTimeout(timer2);
+    };
   }, [measure]);
 
   return (
@@ -43,7 +56,7 @@ export default function HeroSection() {
       }}
     >
       {/* ── Background ── */}
-      <Box sx={{ position: 'absolute', inset: 0, zIndex: 0 }}>
+      <Box sx={{ position: 'absolute', inset: 0, zIndex: 0, pointerEvents: 'none', }}>
         <Image
           src="/background-image.webp"
           alt=""
@@ -55,6 +68,7 @@ export default function HeroSection() {
           sx={{
             position: 'absolute',
             inset: 0,
+            pointerEvents: 'none',
             background:
               'linear-gradient(180deg, #000000 0%, transparent 22%, transparent 68%, #000000 100%)',
           }}
@@ -63,6 +77,7 @@ export default function HeroSection() {
           sx={{
             position: 'absolute',
             inset: 0,
+            pointerEvents: 'none',
             background:
               'radial-gradient(ellipse 55% 55% at 15% 55%, rgba(0,120,255,0.16) 0%, transparent 70%)',
           }}
@@ -71,9 +86,16 @@ export default function HeroSection() {
 
       <Container
         maxWidth="xl"
-        sx={{ position: 'relative', zIndex: 5, px: { xs: 3, sm: 5, md: 8, lg: 10 } }}
+        sx={{ 
+          position: 'relative', 
+          zIndex: 5, 
+          px: { xs: 3, sm: 5, md: 8, lg: 10 },
+        }}
       >
-        <Box
+        <MotionBox
+          variants={staggerContainer}
+          initial="hidden"
+          animate="visible"
           sx={{
             display: 'flex',
             flexDirection: { xs: 'column', lg: 'row' },
@@ -82,15 +104,17 @@ export default function HeroSection() {
           }}
         >
           {/* ── Left / Top: text ── */}
-          <Box
+          <MotionBox
+            variants={fadeInUp}
             sx={{
               flex: '0 0 auto',
               width: { xs: '100%', lg: '52%' },
               display: 'flex',
               flexDirection: 'column',
               gap: { xs: 2, md: 2.5 },
-              zIndex: 6,
-              pb: { xs: '28px', lg: 0 },
+              zIndex: 60,
+              pb: { xs: '12px', lg: 0 },
+              mt: { xs: '8vh', md: '6vh', lg: 0 },
             }}
           >
             <Typography
@@ -153,8 +177,12 @@ export default function HeroSection() {
               powers every moment of your event in one unified, brandable platform.
             </Typography>
 
-            <Box sx={{ mt: { xs: 0.5, md: 1 } }}>
+            <Box sx={{ mt: { xs: 0.5, md: 1 }, pointerEvents: 'auto' }}>
               <Button
+                component="a"
+                href={env.eventpassUrl}
+                target="_blank"
+                rel="noopener noreferrer"
                 variant="contained"
                 sx={{
                   px: { xs: 3.5, md: 5 },
@@ -167,6 +195,11 @@ export default function HeroSection() {
                   background: '#00C8FF',
                   boxShadow: '0 6px 24px rgba(0,200,255,0.35)',
                   color: '#000',
+                  display: 'inline-flex',
+                  textDecoration: 'none',
+                  position: 'relative',
+                  zIndex: 99999,
+                  pointerEvents: 'auto',
                   '&:hover': {
                     background: '#00b8ee',
                     boxShadow: '0 8px 28px rgba(0,200,255,0.5)',
@@ -176,18 +209,21 @@ export default function HeroSection() {
                 Explore 11 Modules
               </Button>
             </Box>
-          </Box>
+          </MotionBox>
 
           {/* ── Right / Bottom: person + trusted-by ── */}
-          <Box
+          <MotionBox
             ref={rightOuterRef}
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1.2, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
             sx={{
-              flex: 1,
+              flex: { xs: '0 0 auto', lg: 1 },
               position: 'relative',
               width: '100%',
               height: `${DESIGN_H * scale}px`,
-              mt: { xs: '-30px', md: '-50px', lg: 0 },
-              mb: { xs: '20px', lg: 0 },
+              mt: { xs: '20px', lg: '60px' },
+              mb: { xs: '-10px', lg: 0 },
               ml: { lg: '4%' },
               mr: { lg: '-6%' },
             }}
@@ -195,30 +231,32 @@ export default function HeroSection() {
             <Box
               sx={{
                 position: 'absolute',
-                top: 0,
+                bottom: 0,
                 left: '50%',
                 width: `${DESIGN_W}px`,
                 height: `${DESIGN_H}px`,
-                transformOrigin: 'top center',
+                transformOrigin: 'bottom center',
                 transform: `translateX(-50%) scale(${scale})`,
               }}
             >
               {/* Trusted By card */}
-              <Box
+              <MotionBox
+                initial={{ opacity: 0, scale: 0.8, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 1.2, ease: [0.16, 1, 0.3, 1] }}
                 sx={{
                   position: 'absolute',
                   top: '6%',
                   left: '25%',
-                  zIndex: 3,
-                  bgcolor: 'rgba(10,16,34,0.9)',
-                  backdropFilter: 'blur(16px)',
-                  WebkitBackdropFilter: 'blur(16px)',
-                  border: '1px solid rgba(255,255,255,0.1)',
+                  zIndex: 2,
+                  bgcolor: 'rgba(10,16,34,0.95)', 
                   borderRadius: '16px',
                   p: '20px 28px',
+                  minWidth: 180,
                   boxShadow:
                     '0 0 0 1px rgba(255,255,255,0.18), 0 0 18px 4px rgba(255,255,255,0.12), 0 0 40px 8px rgba(255,255,255,0.06), 0 8px 32px rgba(0,0,0,0.6)',
-                  minWidth: 180,
+                  backdropFilter: 'none',
+                  WebkitBackdropFilter: 'none',
                 }}
               >
                 <Typography
@@ -243,7 +281,7 @@ export default function HeroSection() {
                     backgroundClip: 'text',
                   }}
                 >
-                  192+
+                  <AnimatedNumber value={192} suffix="+" />
                 </Typography>
                 <Typography
                   sx={{
@@ -258,41 +296,38 @@ export default function HeroSection() {
                   delivering excellence, reliability, and innovative solutions that drive
                   success across every industry.
                 </Typography>
-              </Box>
+              </MotionBox>
 
-              {/* Person image */}
+              {/* Person image container */}
               <Box
                 sx={{
                   position: 'absolute',
                   top: 0,
                   left: 0,
                   right: 0,
-                  bottom: '-5%',
+                  bottom: '-2px',
                   zIndex: 5,
-                  '&::after': {
-                    content: '""',
-                    position: 'absolute',
-                    bottom: 0,
-                    left: 0,
-                    right: 0,
-                    height: '35%',
-                    background: 'linear-gradient(to top, #000000 0%, transparent 100%)',
-                    zIndex: 6,
-                    pointerEvents: 'none',
-                  },
+                  backdropFilter: 'none',
+                  WebkitBackdropFilter: 'none',
                 }}
               >
                 <Image
                   src="/person.webp"
                   alt="Expert with tablet"
                   fill
-                  style={{ objectFit: 'contain', objectPosition: 'bottom right' }}
+                  sizes="(max-width: 900px) 100vw, 50vw"
+                  style={{
+                    objectFit: 'contain',
+                    objectPosition: 'bottom right',
+                    maskImage: 'linear-gradient(to top, transparent 0%, black 25%)',
+                    WebkitMaskImage: 'linear-gradient(to top, transparent 0%, black 25%)',
+                  }}
                   priority
                 />
               </Box>
             </Box>
-          </Box>
-        </Box>
+          </MotionBox>
+        </MotionBox>
       </Container>
     </Box>
   );
