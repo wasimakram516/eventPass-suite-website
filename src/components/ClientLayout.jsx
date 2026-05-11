@@ -8,7 +8,7 @@ export default function ClientLayout({ children }) {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsPageLoading(false);
-    }, 1500);
+    }, 600);
 
     return () => clearTimeout(timer);
   }, []);

@@ -27,7 +27,7 @@ const navItems = [
   { label: 'Contact Us', href: '/contact', isPage: true },
 ];
 
-export default function Navbar() {
+export default function Navbar({ onLogoClick }) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -48,6 +48,13 @@ export default function Navbar() {
        const id = item.href.replace('/', '');
        const el = document.querySelector(id);
        if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const handleLogoClick = (e) => {
+    if (onLogoClick) {
+      e.preventDefault();
+      onLogoClick();
     }
   };
 
@@ -76,6 +83,7 @@ export default function Navbar() {
             <Box 
               component={Link} 
               href="/"
+              onClick={handleLogoClick}
               sx={{ position: 'relative', width: { xs: 150, md: 210 }, height: { xs: 42, md: 54 }, flexShrink: 0, cursor: 'pointer' }}
             >
               <Image

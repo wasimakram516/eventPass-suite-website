@@ -1,6 +1,6 @@
 'use client';
 import { useState } from 'react';
-import { Box, Typography, Button, Container, Grid, TextField, IconButton, CircularProgress } from '@mui/material';
+import { Box, Typography, Button, Container, Grid, TextField, CircularProgress } from '@mui/material';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MotionBox, fadeInUp, staggerContainer } from '@/components/Animations';
 import Navbar from '@/components/Navbar';
@@ -11,53 +11,104 @@ import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import CustomAlert from '@/components/CustomAlert';
 import Loader from '@/components/Loader';
 import env from '@/config/env';
-import Link from 'next/link';
+import { COUNTRY_CODES, DEFAULT_COUNTRY_CODE, validatePhoneNumber } from '@/utils/countryCodes';
+import CountryCodeSelector from '@/components/CountryCodeSelector';
+
+const formatPhoneNumber = (countryCode, phone) => {
+  const digits = String(phone || '').replace(/\D/g, '');
+  if (!digits) return '';
+  return `${countryCode} ${digits}`.trim();
+};
 
 export default function ContactPage() {
   const [formState, setFormState] = useState({
     name: '',
     company: '',
     email: '',
+    phoneCountryCode: DEFAULT_COUNTRY_CODE,
+    phone: '',
     message: ''
   });
   const [status, setStatus] = useState('idle'); // idle, loading, success
   const [alert, setAlert] = useState({ open: false, title: '', message: '', type: 'success' });
-  const [emailError, setEmailError] = useState('');
+  const [formErrors, setFormErrors] = useState({});
 
   const validateEmail = (email) => {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return re.test(String(email).toLowerCase());
   };
 
+  const getPhoneValidationMessage = (country) => {
+    if (!country) {
+      return 'Please enter a valid phone number.';
+    }
+
+    const expectedDigits = typeof country.digits === 'number'
+      ? `${country.digits}`
+      : `${country.digits?.min || ''}${country.digits?.max ? `-${country.digits.max}` : ''}`;
+
+    return `Please enter a valid ${country.country} phone number (${country.code}${expectedDigits ? `, ${expectedDigits} digits` : ''}).`;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!validateEmail(formState.email)) {
-      setEmailError('Please enter a valid email address.');
+    const nextErrors = {};
+    const selectedCountry = COUNTRY_CODES.find((country) => country.code === formState.phoneCountryCode) || COUNTRY_CODES[0];
+
+    if (!formState.name.trim()) {
+      nextErrors.name = 'Full name is required.';
+    }
+
+    if (!formState.email.trim()) {
+      nextErrors.email = 'Email address is required.';
+    } else if (!validateEmail(formState.email)) {
+      nextErrors.email = 'Please enter a valid email address.';
+    }
+
+    if (!formState.message.trim()) {
+      nextErrors.message = 'Message is required.';
+    }
+
+    if (formState.phone.trim() && !validatePhoneNumber(formState.phone, selectedCountry?.isoCode)) {
+      nextErrors.phone = getPhoneValidationMessage(selectedCountry);
+    }
+
+    if (Object.keys(nextErrors).length > 0) {
+      setFormErrors(nextErrors);
       return;
     }
 
-    setEmailError('');
+    setFormErrors({});
     setStatus('loading');
     
     try {
-      const FORM_ID = env.formspreeFormId || 'xldgjgkr';
-      
-      const response = await fetch(`https://formspree.io/f/${FORM_ID}`, {
+      const response = await fetch('/api/contact', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           name: formState.name,
           company: formState.company,
           email: formState.email,
-          message: formState.message,
-          _subject: `New Inquiry: ${formState.company}`
+          phone: {
+            countryCode: formState.phoneCountryCode,
+            number: formState.phone,
+            formatted: formatPhoneNumber(formState.phoneCountryCode, formState.phone)
+          },
+          message: formState.message
         })
       });
 
       if (response.ok) {
         setStatus('success');
-        setFormState({ name: '', company: '', email: '', message: '' });
+        setFormState({
+          name: '',
+          company: '',
+          email: '',
+          phoneCountryCode: DEFAULT_COUNTRY_CODE,
+          phone: '',
+          message: ''
+        });
         setAlert({
           open: true,
           title: 'Message Sent!',
@@ -66,7 +117,8 @@ export default function ContactPage() {
         });
         setTimeout(() => setStatus('idle'), 5000);
       } else {
-        throw new Error('Server responded with an error');
+        const payload = await response.json().catch(() => null);
+        throw new Error(payload?.error || 'Server responded with an error');
       }
     } catch (error) {
       console.error('Submission error:', error);
@@ -82,6 +134,14 @@ export default function ContactPage() {
 
   const handleChange = (e) => {
     setFormState({ ...formState, [e.target.name]: e.target.value });
+
+    if (formErrors[e.target.name]) {
+      setFormErrors((prev) => {
+        const nextErrors = { ...prev };
+        delete nextErrors[e.target.name];
+        return nextErrors;
+      });
+    }
   };
 
   return (
@@ -118,14 +178,14 @@ export default function ContactPage() {
             animate="visible"
           >
             {/* Header Section */}
-            <Box sx={{ textAlign: 'center', mb: 10 }}>
+            <Box sx={{ textAlign: 'center', mb: { xs: 8, md: 9 } }}>
               <MotionBox variants={fadeInUp}>
                 <Typography
                   sx={{
-                    fontSize: { xs: '2.5rem', md: '4.5rem' },
+                    fontSize: { xs: '2.25rem', md: '4rem' },
                     fontWeight: 900,
                     lineHeight: 1,
-                    mb: 2,
+                    mb: 1.5,
                     color: '#fff'
                   }}
                 >
@@ -133,20 +193,20 @@ export default function ContactPage() {
                 </Typography>
                 <Typography
                   sx={{
-                    fontSize: { xs: '2.5rem', md: '4.5rem' },
+                    fontSize: { xs: '2.25rem', md: '4rem' },
                     fontWeight: 900,
                     lineHeight: 1,
                     background: 'linear-gradient(90deg, #00C8FF 0%, #9061FF 100%)',
                     WebkitBackgroundClip: 'text',
                     WebkitTextFillColor: 'transparent',
-                    mb: 4
+                    mb: 2.5
                   }}
                 >
                   Enter the Next Generation.
                 </Typography>
                 <Typography
                   sx={{
-                    fontSize: { xs: '1rem', md: '1.2rem' },
+                    fontSize: { xs: '0.95rem', md: '1.05rem' },
                     color: 'rgba(255,255,255,0.6)',
                     maxWidth: '700px',
                     mx: 'auto',
@@ -158,39 +218,42 @@ export default function ContactPage() {
               </MotionBox>
             </Box>
 
-            <Grid container spacing={8} justifyContent="center">
+            <Grid container spacing={{ xs: 4, md: 6 }} justifyContent="center">
               {/* Form Section */}
-              <Grid item xs={12} md={7}>
+              <Grid item xs={12} md={7.5}>
                 <MotionBox 
                   variants={fadeInUp}
                   sx={{
-                    p: { xs: 3, md: 6 },
-                    borderRadius: '24px',
+                    p: { xs: 2.5, md: 4.5 },
+                    borderRadius: '20px',
                     bgcolor: 'rgba(255,255,255,0.02)',
                     border: '1px solid rgba(255,255,255,0.05)',
                     backdropFilter: 'blur(20px)',
                   }}
                 >
-                  <Typography variant="h5" sx={{ fontWeight: 700, mb: 4, letterSpacing: '-0.02em' }}>
+                  <Typography variant="h5" sx={{ fontWeight: 700, mb: 3, letterSpacing: '-0.02em', fontSize: { xs: '1.35rem', md: '1.55rem' } }}>
                     Send us a message
                   </Typography>
                   
-                  <Box component="form" onSubmit={handleSubmit}>
-                    <Grid container spacing={3}>
+                  <Box component="form" onSubmit={handleSubmit} noValidate>
+                    <Grid container spacing={2.25}>
                       <Grid item xs={12} sm={6}>
                         <CustomTextField 
                           label="Full Name" 
-                          placeholder="John Doe" 
+                          requiredLabel
+                          placeholder="Your Name" 
                           fullWidth 
                           name="name"
                           value={formState.name}
                           onChange={handleChange}
-                          required
+                          error={!!formErrors.name}
+                          helperText={formErrors.name}
                         />
                       </Grid>
                       <Grid item xs={12} sm={6}>
                         <CustomTextField 
                           label="Company" 
+                          requiredLabel={false}
                           placeholder="Your Company" 
                           fullWidth 
                           name="company"
@@ -198,26 +261,41 @@ export default function ContactPage() {
                           onChange={handleChange}
                         />
                       </Grid>
-                      <Grid item xs={12}>
+                      <Grid item xs={12} md={6}>
+                        <PhoneField
+                          label="Phone Number"
+                          value={formState.phone}
+                          phoneCountryCode={formState.phoneCountryCode}
+                          errorMessage={formErrors.phone}
+                          onChange={(nextValue, nextCountryCode) => {
+                            setFormState((prev) => ({
+                              ...prev,
+                              phone: nextValue,
+                              phoneCountryCode: nextCountryCode,
+                            }));
+                          }}
+                        />
+                      </Grid>
+                      <Grid item xs={12} md={6}>
                         <CustomTextField 
                           label="Email Address" 
-                          placeholder="john@example.com" 
+                          requiredLabel
+                          placeholder="user@example.com" 
                           fullWidth 
                           name="email"
                           value={formState.email}
                           onChange={(e) => {
                             handleChange(e);
-                            if (emailError) setEmailError('');
                           }}
-                          required
                           type="email"
-                          error={!!emailError}
-                          helperText={emailError}
+                          error={!!formErrors.email}
+                          helperText={formErrors.email}
                         />
                       </Grid>
                       <Grid item xs={12}>
                         <CustomTextField 
                           label="Message" 
+                          requiredLabel
                           placeholder="Tell us about your event..." 
                           multiline 
                           rows={4} 
@@ -225,7 +303,8 @@ export default function ContactPage() {
                           name="message"
                           value={formState.message}
                           onChange={handleChange}
-                          required
+                          error={!!formErrors.message}
+                          helperText={formErrors.message}
                         />
                       </Grid>
                       <Grid item xs={12}>
@@ -290,9 +369,9 @@ export default function ContactPage() {
                     
                     <ContactCard 
                       icon={<MailOutlineIcon />} 
-                      title="Email solutions@" 
+                      title={`Email ${env.contactEmail.split('@')[0] || 'solutions'}`} 
                       subtitle="Detailed inquiries"
-                      href="mailto:solutions@eventpass.om"
+                      href={`mailto:${env.contactEmail}`}
                     />
 
                     <Box sx={{ 
@@ -329,24 +408,123 @@ export default function ContactPage() {
   );
 }
 
-function CustomTextField({ label, ...props }) {
+function PhoneField({ label, value, phoneCountryCode, errorMessage, onChange }) {
+  const selectedCountry = COUNTRY_CODES.find((country) => country.code === phoneCountryCode) || COUNTRY_CODES.find((country) => country.code === DEFAULT_COUNTRY_CODE) || COUNTRY_CODES[0];
+  const displayValue = value || '';
+
   return (
-    <Box sx={{ mb: 1 }}>
+    <Box sx={{ mb: 1, width: '100%' }}>
       <Typography sx={{ fontSize: '0.85rem', fontWeight: 600, mb: 1, color: 'rgba(255,255,255,0.7)' }}>
         {label}
       </Typography>
+
+      <Box
+        sx={{
+          display: 'flex',
+          alignItems: 'stretch',
+          width: '100%',
+          minWidth: 0,
+          minHeight: '20px',
+          borderRadius: '12px',
+          bgcolor: 'rgba(255,255,255,0.05)',
+          border: `1px solid ${errorMessage ? '#ff6b6b' : 'rgba(255,255,255,0.1)'}`,
+          transition: 'all 0.3s ease',
+          '&:focus-within': {
+            borderColor: errorMessage ? '#ff6b6b' : '#00C8FF',
+          }
+        }}
+      >
+        <Box sx={{ flex: '0 0 auto', minWidth: { xs: 112, sm: 140 }, borderRight: '1px solid rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', px: 0.4, py: 0.15 }}>
+          <CountryCodeSelector
+            value={selectedCountry.isoCode}
+            onChange={(nextIsoCode) => {
+              const nextCountry = COUNTRY_CODES.find((country) => country.isoCode === nextIsoCode) || selectedCountry;
+              onChange(displayValue, nextCountry.code);
+            }}
+          />
+        </Box>
+
+        <TextField
+          value={displayValue}
+          onChange={(e) => onChange(e.target.value.replace(/[^\d]/g, ''), selectedCountry.code)}
+          variant="standard"
+          type="tel"
+          autoComplete="tel-national"
+          placeholder="Phone number"
+          InputProps={{ disableUnderline: true }}
+          sx={{
+            flex: 1,
+            minWidth: 0,
+            '& .MuiInputBase-input': {
+              color: '#fff',
+              fontSize: '0.9rem',
+              py: 2.1,
+              px: 1.7,
+              height: '100%',
+              display: 'flex',
+              alignItems: 'center',
+              lineHeight: 1.2,
+              '&::placeholder': {
+                color: 'rgba(255,255,255,0.3)',
+                opacity: 1,
+                textAlign: 'left',
+              }
+            },
+            '& .MuiInputBase-input:-webkit-autofill, & .MuiInputBase-input:-webkit-autofill:hover, & .MuiInputBase-input:-webkit-autofill:focus, & .MuiInputBase-input:-webkit-autofill:active': {
+              backgroundColor: 'rgba(255,255,255,0.05) !important',
+              WebkitBoxShadow: '0 0 0 1000px rgba(255,255,255,0.05) inset !important',
+              boxShadow: '0 0 0 1000px rgba(255,255,255,0.05) inset !important',
+              WebkitTextFillColor: '#fff !important',
+              caretColor: '#fff',
+              transition: 'background-color 9999s ease-out 0s',
+              borderRadius: '12px',
+            }
+          }}
+        />
+      </Box>
+
+      {errorMessage ? (
+        <Typography sx={{ color: '#ff6b6b', fontSize: '0.76rem', mt: 0.75, ml: 0.25 }}>
+          {errorMessage}
+        </Typography>
+      ) : null}
+    </Box>
+  );
+}
+
+function CustomTextField({ label, requiredLabel = false, ...props }) {
+  return (
+    <Box sx={{ mb: 1 }}>
+      {label ? (
+        <Typography sx={{ fontSize: '0.85rem', fontWeight: 600, mb: 1, color: 'rgba(255,255,255,0.7)' }}>
+          {label}
+          {requiredLabel ? <Box component="span" sx={{ color: '#00C8FF', ml: 0.5 }}>*</Box> : null}
+        </Typography>
+      ) : null}
       <TextField
         {...props}
         variant="standard"
+        inputProps={{
+          ...props.inputProps,
+          autoComplete: props.name === 'email' ? 'email' : props.inputProps?.autoComplete,
+        }}
+        FormHelperTextProps={{
+          sx: {
+            color: '#ff6b6b',
+            ml: 0,
+            mt: 0.75,
+            fontSize: '0.76rem',
+          }
+        }}
         InputProps={{
           disableUnderline: true,
           sx: {
             bgcolor: 'rgba(255,255,255,0.05)',
             borderRadius: '12px',
             px: 2,
-            py: 1.5,
+            py: 1.45,
             color: '#fff',
-            fontSize: '0.95rem',
+            fontSize: '0.9rem',
             border: '1px solid rgba(255,255,255,0.1)',
             transition: 'all 0.3s ease',
             '&:focus-within': {
@@ -359,10 +537,71 @@ function CustomTextField({ label, ...props }) {
           '& .MuiInputBase-input::placeholder': {
             color: 'rgba(255,255,255,0.3)',
             opacity: 1,
-          }
+          },
+          '& .MuiInputBase-input:-webkit-autofill, & .MuiInputBase-input:-webkit-autofill:hover, & .MuiInputBase-input:-webkit-autofill:focus, & .MuiInputBase-input:-webkit-autofill:active': {
+            backgroundColor: 'rgba(255,255,255,0.05) !important',
+            WebkitBoxShadow: '0 0 0 1000px rgba(255,255,255,0.05) inset !important',
+            boxShadow: '0 0 0 1000px rgba(255,255,255,0.05) inset !important',
+            WebkitTextFillColor: '#fff !important',
+            caretColor: '#fff',
+            transition: 'background-color 9999s ease-out 0s',
+            borderRadius: '12px',
+          },
+          '& .MuiFormHelperText-root': {
+            color: '#ff6b6b',
+          },
         }}
       />
     </Box>
+  );
+}
+
+function CustomSelectField({ children, ...props }) {
+  return (
+    <TextField
+      {...props}
+      select
+      variant="standard"
+      InputProps={{
+        disableUnderline: true,
+        sx: {
+          bgcolor: 'rgba(255,255,255,0.05)',
+          borderRadius: '12px',
+          px: 2,
+          py: 1.5,
+          color: '#fff',
+          fontSize: '0.95rem',
+          border: '1px solid rgba(255,255,255,0.1)',
+          transition: 'all 0.3s ease',
+          '&:focus-within': {
+            borderColor: '#00C8FF',
+            bgcolor: 'rgba(0, 200, 255, 0.05)',
+          }
+        }
+      }}
+      SelectProps={{
+        MenuProps: {
+          PaperProps: {
+            sx: {
+              bgcolor: '#071016',
+              color: '#fff',
+              border: '1px solid rgba(255,255,255,0.08)',
+              borderRadius: 2,
+            }
+          }
+        }
+      }}
+      sx={{
+        '& .MuiInputBase-input': {
+          py: 0,
+        },
+        '& .MuiSelect-icon': {
+          color: 'rgba(255,255,255,0.75)',
+        },
+      }}
+    >
+      {children}
+    </TextField>
   );
 }
 
