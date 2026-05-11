@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 import React, { useState, useEffect } from 'react';
 import {
   AppBar,
@@ -20,10 +20,10 @@ import Link from 'next/link';
 
 const navItems = [
   { label: 'Home', href: '/', isPage: true },
-  { label: 'Features', href: '/#features' },
-  { label: 'Modules', href: '/#modules' },
-  { label: 'How It Works', href: '/#how-it-works' },
-  { label: 'Events', href: '/#events' },
+  { label: 'Features', href: '/features', isPage: true },
+  { label: 'Modules', href: '/modules', isPage: true },
+  { label: 'How It Works', href: '/how-it-works', isPage: true },
+  { label: 'Events', href: '/events', isPage: true },
   { label: 'Contact Us', href: '/contact', isPage: true },
 ];
 
