@@ -19,7 +19,7 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 
 const navItems = [
-  { label: 'Home', href: '/', isPage: true },
+  { label: 'Home', href: '/?view=site', isPage: true },
   { label: 'Features', href: '/features', isPage: true },
   { label: 'Modules', href: '/modules', isPage: true },
   { label: 'How It Works', href: '/how-it-works', isPage: true },

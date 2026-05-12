@@ -1,5 +1,6 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Suspense } from 'react';
+import { useSearchParams, useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { Box, Button, Container, Typography } from '@mui/material';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -18,21 +19,21 @@ import RSVPNStepSection from '@/components/RSVPNStepSection';
 import Footer from '@/components/Footer';
 import env from '@/config/env';
 
-export default function Home() {
+function HomeContent() {
   const [showFullSite, setShowFullSite] = useState(false);
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const view = searchParams.get('view');
 
   useEffect(() => {
-    const resetSplash = () => setShowFullSite(false);
+    if (view === 'site') {
+      setShowFullSite(true);
+    } else {
+      setShowFullSite(false);
+    }
+  }, [view]);
 
-    window.addEventListener('popstate', resetSplash);
-    window.addEventListener('pageshow', (e) => {
-      if (e.persisted) resetSplash();
-    });
-
-    return () => {
-      window.removeEventListener('popstate', resetSplash);
-      window.removeEventListener('pageshow', resetSplash);
-    };
+  useEffect(() => {
   }, []);
 
   return (
@@ -104,7 +105,11 @@ export default function Home() {
           }} />
 
           <Box sx={{ position: 'relative' }}>
-            <Navbar onLogoClick={() => setShowFullSite(false)} />
+            <Navbar 
+              onLogoClick={() => {
+                router.push('/');
+              }} 
+            />
             <Box component="main">
               <HeroSection />
               <StatsAndProductSection />
@@ -281,7 +286,9 @@ export default function Home() {
                 </Button>
 
                 <Button
-                  onClick={() => setShowFullSite(true)}
+                  onClick={() => {
+                    router.push('/?view=site');
+                  }}
                   variant="contained"
                   sx={{
                   minWidth: { xs: 150, sm: 230, md: 280 },
@@ -313,5 +320,13 @@ export default function Home() {
         </Box>
       )}
     </>
+  );
+}
+
+export default function Home() {
+  return (
+    <Suspense fallback={null}>
+      <HomeContent />
+    </Suspense>
   );
 }

@@ -69,7 +69,7 @@ export default function Footer() {
       sx={{
         bgcolor: '#000000',
         position: 'relative',
-        pt: { xs: 9, md: 12 },
+        pt: { xs: 3, md: 12 },
         pb: { xs: 3, md: 6 },
         overflow: 'hidden',
         '&::before': {
@@ -103,10 +103,10 @@ export default function Footer() {
           {/* Section 1: Logo & Branding */}
           <Grid item xs={12} md={4}>
             <Box component={motion.div} variants={fadeInUp}>
-              <Stack spacing={{ xs: 2, md: 4 }} alignItems={{ xs: 'center', md: 'flex-start' }}>
-                <Box sx={{ position: 'relative', width: { xs: 160, md: 220 }, height: { xs: 45, md: 60 } }}>
+              <Stack spacing={{ xs: 0, md: 0 }} alignItems={{ xs: 'center', md: 'flex-start' }}>
+                <Box sx={{ position: 'relative', width: { xs: 200, md: 250 }, height: { xs: 150, md: 200 } }}>
                   <Image
-                    src="/companylogo.webp"
+                    src="/logo.webp"
                     alt="WhiteWall Digital Solutions"
                     fill
                     sizes="(max-width: 600px) 160px, 220px"

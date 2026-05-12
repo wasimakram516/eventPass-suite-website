@@ -33,25 +33,56 @@ export async function POST(req) {
     const subject = `New EventPass inquiry from ${name}${company ? ` - ${company}` : ''}`;
 
     const formattedPhone = formatPhonePayload(data?.phone);
+    const LOGO_URL = env.logoUrl;
     const html = `
-      <div style="background:#000;color:#fff;padding:24px;font-family:Helvetica,Arial,sans-serif">
-        <div style="max-width:720px;margin:0 auto;border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,0.06);box-shadow:0 20px 50px rgba(0,0,0,0.35)">
-          <div style="padding:28px 32px;background:linear-gradient(90deg,#00C8FF 0%,#9061FF 100%);color:#000;font-weight:800;font-size:22px;letter-spacing:-0.02em">New EventPass inquiry</div>
-          <div style="padding:28px 32px;background:#071016;color:rgba(255,255,255,0.96)">
-            <p style="margin:0 0 20px;font-size:15px;line-height:1.6;color:rgba(255,255,255,0.8)">A visitor submitted the contact form. The details below are ready for follow-up.</p>
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:18px">
-              ${renderInfoCard('Full name', escapeHtml(name))}
-              ${renderInfoCard('Email', `<a href="mailto:${escapeHtml(email)}" style="color:#00C8FF;text-decoration:none">${escapeHtml(email)}</a>`)}
-              ${renderInfoCard('Company', escapeHtml(company || 'Not provided'))}
-              ${renderInfoCard('Phone', formattedPhone ? escapeHtml(formattedPhone) : 'Not provided')}
-            </div>
-            <div style="border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:18px 20px;background:rgba(255,255,255,0.03)">
-              <div style="font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.55);margin-bottom:8px">Message</div>
-              <div style="white-space:pre-wrap;line-height:1.7;font-size:15px;color:rgba(255,255,255,0.95)">${escapeHtml(message)}</div>
-            </div>
-            <div style="margin-top:20px;color:rgba(255,255,255,0.6);font-size:13px">Reply directly to the user using their email address. The reply-to header is set automatically.</div>
+      <div style="font-family:'Segoe UI',Arial,sans-serif;background:#f6f8fa;padding:20px;">
+        <div style="max-width:640px;margin:auto;background:#ffffff;border-radius:12px;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,0.05);">
+          
+          <!-- HEADER -->
+          <div style="background:#004aad;padding:32px;text-align:center;">
+            ${LOGO_URL ? `<img src="${LOGO_URL}" alt="EventPass" style="max-width:140px;max-height:80px;margin-bottom:12px;display:inline-block;" />` : ''}
+            <h2 style="color:#fff;font-size:22px;margin:0;">EventPass Inquiry</h2>
           </div>
-          <div style="padding:12px 16px;background:#05070a;color:rgba(255,255,255,0.5);font-size:12px;text-align:center">eventpass.whitewall.solutions</div>
+
+          <!-- CONTENT BODY -->
+          <div style="padding:24px 28px 28px;">
+            
+            <p style="font-size:15px;color:#333;margin-top:20px;">
+              A new inquiry has been submitted through the contact form.
+            </p>
+
+            <h3 style="margin-top:24px;font-size:17px;color:#004aad;">Inquiry Details:</h3>
+            <table style="width:100%;font-size:14px;color:#333;">
+              <tr>
+                <td style="padding:8px 0;width:30%;"><strong>Full Name:</strong></td>
+                <td style="padding:8px 0;">${escapeHtml(name)}</td>
+              </tr>
+              <tr>
+                <td style="padding:8px 0;"><strong>Email:</strong></td>
+                <td style="padding:8px 0;"><a href="mailto:${escapeHtml(email)}" style="color:#004aad;text-decoration:none">${escapeHtml(email)}</a></td>
+              </tr>
+              <tr>
+                <td style="padding:8px 0;"><strong>Company:</strong></td>
+                <td style="padding:8px 0;">${escapeHtml(company || 'Not provided')}</td>
+              </tr>
+              <tr>
+                <td style="padding:8px 0;"><strong>Phone:</strong></td>
+                <td style="padding:8px 0;">${formattedPhone ? escapeHtml(formattedPhone) : 'Not provided'}</td>
+              </tr>
+            </table>
+
+            <h3 style="margin-top:24px;font-size:17px;color:#004aad;">Message:</h3>
+            <div style="background:#f9f9f9;border-radius:8px;padding:20px;border:1px solid #eee;font-size:14px;color:#333;line-height:1.6;white-space:pre-wrap;">${escapeHtml(message)}</div>
+
+            <!-- FOOTER -->
+            <hr style="border:none;border-top:1px solid #eee;margin:32px 0 24px;" />
+            <p style="font-size:13px;color:#777;margin:0;">
+              This inquiry was sent from the EventPass Website.
+            </p>
+            <p style="font-size:13px;color:#777;margin:4px 0 0;">
+              &copy; ${new Date().getFullYear()} WhiteWall Digital Solutions
+            </p>
+          </div>
         </div>
       </div>
     `;
@@ -91,15 +122,6 @@ function escapeHtml(str) {
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&#39;');
-}
-
-function renderInfoCard(label, value) {
-  return `
-    <div style="border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:16px 18px;background:rgba(255,255,255,0.03)">
-      <div style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.55);margin-bottom:7px">${label}</div>
-      <div style="font-size:15px;line-height:1.5;color:rgba(255,255,255,0.96)">${value}</div>
-    </div>
-  `;
 }
 
 function formatPhonePayload(phone) {

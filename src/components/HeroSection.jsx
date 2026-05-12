@@ -17,7 +17,7 @@ export default function HeroSection() {
       const w = rightOuterRef.current.offsetWidth;
       const isMobile = window.innerWidth < 900;
       const baseScale = w / DESIGN_W;
-      const calculatedScale = Math.min(1.2, isMobile ? baseScale * 0.7 : baseScale);
+      const calculatedScale = Math.min(1.35, isMobile ? baseScale * 0.95 : baseScale * 1.1);
       setScale(calculatedScale);
     }
   }, []);
@@ -222,10 +222,10 @@ export default function HeroSection() {
               position: 'relative',
               width: '100%',
               height: `${DESIGN_H * scale}px`,
-              mt: { xs: '20px', lg: '60px' },
-              mb: { xs: '-10px', lg: 0 },
-              ml: { lg: '4%' },
-              mr: { lg: '-6%' },
+              mt: { xs: '0px', lg: '-20px' },
+              mb: { xs: '0px', lg: '0px' },
+              ml: { lg: '2%' },
+              mr: { lg: '-8%' },
             }}
           >
             <Box
@@ -247,12 +247,12 @@ export default function HeroSection() {
                 sx={{
                   position: 'absolute',
                   top: '6%',
-                  left: '25%',
+                  left: '12%',
                   zIndex: 2,
                   bgcolor: 'rgba(10,16,34,0.95)', 
                   borderRadius: '16px',
-                  p: '20px 28px',
-                  minWidth: 180,
+                  p: '24px 32px',
+                  minWidth: 260,
                   boxShadow:
                     '0 0 0 1px rgba(255,255,255,0.18), 0 0 18px 4px rgba(255,255,255,0.12), 0 0 40px 8px rgba(255,255,255,0.06), 0 8px 32px rgba(0,0,0,0.6)',
                   backdropFilter: 'none',
@@ -261,8 +261,8 @@ export default function HeroSection() {
               >
                 <Typography
                   sx={{
-                    fontSize: '0.78rem',
-                    fontWeight: 600,
+                  fontSize: '0.9rem',
+                    fontWeight: 700,
                     color: 'rgba(255,255,255,0.65)',
                     mb: 0.4,
                   }}
@@ -285,11 +285,11 @@ export default function HeroSection() {
                 </Typography>
                 <Typography
                   sx={{
-                    fontSize: '0.7rem',
-                    color: 'rgba(255,255,255,0.45)',
-                    lineHeight: 1.5,
-                    mt: 0.5,
-                    maxWidth: 150,
+                    fontSize: '0.88rem',
+                    color: 'rgba(255,255,255,0.55)',
+                    lineHeight: 1.6,
+                    mt: 1,
+                    maxWidth: 220,
                   }}
                 >
                   Proudly trusted by Oman's most exclusive brands and leading companies,
@@ -304,7 +304,7 @@ export default function HeroSection() {
                   position: 'absolute',
                   top: 0,
                   left: 0,
-                  right: 0,
+                  right: "30px",
                   bottom: '-2px',
                   zIndex: 5,
                   backdropFilter: 'none',
