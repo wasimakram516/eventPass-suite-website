@@ -1,8 +1,8 @@
 'use client';
 import React from 'react';
 import { Box, Container, Typography, Grid, Paper } from '@mui/material';
-import Image from 'next/image';
 import HowToRegIcon from '@mui/icons-material/HowToReg';
+import EngagementCube from './EngagementCube';
 import QrCodeScannerIcon from '@mui/icons-material/QrCodeScanner';
 import LocalPrintshopIcon from '@mui/icons-material/LocalPrintshop';
 import PersonSearchIcon from '@mui/icons-material/PersonSearch';
@@ -191,28 +191,16 @@ export default function OneStopShopSection() {
             <Grid item xs={12} lg={6.5}>
               <MotionBox
                 variants={fadeInUp}
-                animate={{ 
-                  y: [0, -15, 0],
-                }}
-                transition={{ 
-                  duration: 6, 
-                  repeat: Infinity, 
-                  ease: "easeInOut" 
-                }}
                 sx={{
                   position: 'relative',
                   width: '100%',
-                  aspectRatio: '1/1',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
                   maxHeight: 600,
                 }}
               >
-                <Image
-                  src="/cube.webp"
-                  alt="EventPass Engagement Cube"
-                  fill
-                  style={{ objectFit: 'contain' }}
-                  sizes="(max-width: 900px) 100vw, 50vw"
-                />
+                <EngagementCube />
               </MotionBox>
             </Grid>
 

@@ -7,13 +7,13 @@ export default function PageHero({ title, subtitle, label }) {
     <Box
       sx={{
         position: 'relative',
-        minHeight: { xs: '100vh', md: 'auto' },
-        pt: { xs: 0, md: 18 },
-        pb: { xs: 0, md: 10 },
+        minHeight: { xs: '100vh', md: '100vh' },
+        pt: { xs: 0, md: 0 },
+        pb: { xs: 0, md: 0 },
         overflow: 'hidden',
         bgcolor: '#000',
         display: 'flex',
-        alignItems: { xs: 'center', md: 'flex-start' },
+        alignItems: 'center',
       }}
     >
       {/* Background Glows */}

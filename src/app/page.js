@@ -142,6 +142,14 @@ function HomeContent() {
               sizes="100vw"
               style={{ objectFit: 'cover', objectPosition: 'center' }}
             />
+            <Box 
+              sx={{ 
+                position: 'absolute', 
+                inset: 0, 
+                background: 'linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.8) 100%)',
+                zIndex: 1 
+              }} 
+            />
           </Box>
 
           <Container
