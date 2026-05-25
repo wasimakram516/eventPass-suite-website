@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { Box, Typography, Button, Container } from '@mui/material';
 import Image from 'next/image';
@@ -58,7 +58,7 @@ export default function HeroSection() {
       {/* ── Background ── */}
       <Box sx={{ position: 'absolute', inset: 0, zIndex: 0, pointerEvents: 'none', }}>
         <Image
-          src="/background-image.webp"
+          src="/images/background-image.webp"
           alt=""
           fill
           style={{ objectFit: 'cover', objectPosition: 'center', opacity: 0.4 }}
@@ -312,7 +312,7 @@ export default function HeroSection() {
                 }}
               >
                 <Image
-                  src="/person.webp"
+                  src="/images/person.webp"
                   alt="Expert with tablet"
                   fill
                   sizes="(max-width: 900px) 100vw, 50vw"
