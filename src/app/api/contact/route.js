@@ -29,7 +29,7 @@ export async function POST(req) {
     });
 
     const to = env.contactToEmail || user;
-    const from = env.contactToEmail || user;
+    const from = env.contactFromEmail || env.contactToEmail || user;
     const subject = `New EventPass inquiry from ${name}${company ? ` - ${company}` : ''}`;
 
     const formattedPhone = formatPhonePayload(data?.phone);

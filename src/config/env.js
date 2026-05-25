@@ -8,6 +8,7 @@ const env = {
   emailPass: process.env.EMAIL_PASS || process.env.SMTP_PASS || '',
   emailSecure: (process.env.EMAIL_SECURE || process.env.SMTP_SECURE || 'false') === 'true',
   contactToEmail: process.env.CONTACT_TO_EMAIL || '',
+  contactFromEmail: process.env.CONTACT_FROM_EMAIL || '',
   heroVideoUrl: process.env.NEXT_PUBLIC_HERO_SECTION_VIDEO_URL || '',
 };
 
