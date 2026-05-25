@@ -7,8 +7,8 @@ import {
   Button,
 } from '@mui/material';
 import { motion } from 'framer-motion';
-import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
-import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutlined';
+import ErrorOutlineIcon from '@mui/icons-material/ErrorOutlined';
 
 const CustomAlert = ({ open, handleClose, title, message, type = 'success' }) => {
   return (

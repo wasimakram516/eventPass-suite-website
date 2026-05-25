@@ -1,14 +1,14 @@
-'use client';
+﻿'use client';
 import React from 'react';
 import { Box, Container, Typography, Grid, Paper, Stack } from '@mui/material';
-import Image from 'next/image';
 import RefreshIcon from '@mui/icons-material/Refresh';
-import MailOutlineIcon from '@mui/icons-material/MailOutline';
+import MailOutlineIcon from '@mui/icons-material/MailOutlined';
 import DevicesIcon from '@mui/icons-material/Smartphone';
 import PrintIcon from '@mui/icons-material/Print';
 import QrCodeScannerIcon from '@mui/icons-material/QrCode';
 import PhotoCameraIcon from '@mui/icons-material/PhotoCamera';
 import { MotionBox, fadeInUp, staggerContainer, AnimatedNumber } from './Animations';
+import CheckInVisual from '@/components/modules/CheckInVisual';
 
 const hardwareItems = [
   { icon: <DevicesIcon sx={{ fontSize: 44, color: '#00D68F' }} />, label: 'Self-Check Kiosk', sub: 'IMMERSIVE • BRANDED CUSTOM' },
@@ -61,7 +61,7 @@ export default function OperationalMuscleSection() {
           </MotionBox>
 
           <Grid container spacing={3}>
-            <Grid item xs={12} lg={5}>
+            <Grid size={{ xs: 12, lg: 5 }}>
               <MotionBox variants={fadeInUp} sx={{ height: '100%' }}>
                 <Paper sx={{ ...glossCardStyle, height: '100%' }}>
                   <Typography
@@ -86,72 +86,8 @@ export default function OperationalMuscleSection() {
                     QR scanning, self-service kiosks, on-demand badge printing and walk-in flows — all in
                     one queueing-free check-in stack.
                   </Typography>
-                  <Box
-                    sx={{
-                      height: 380,
-                      position: 'relative',
-                      mb: 4,
-                      width: '100%',
-                      display: 'flex',
-                      flexDirection: 'column',
-                      gap: 2,
-                    }}
-                  >
-                    <Box
-                      sx={{
-                        position: 'relative',
-                        flex: 1,
-                        width: '100%',
-                        borderRadius: '16px',
-                        overflow: 'hidden',
-                        border: '1px solid rgba(255,255,255,0.08)',
-                        background: 'rgba(255, 255, 255, 0.03)',
-                        backdropFilter: 'blur(10px)',
-                      }}
-                    >
-                      <Box
-                        sx={{
-                          position: 'absolute',
-                          top: { xs: '-22%', md: 0 },
-                          left: { xs: '-11%', md: '-10%' },
-                          right: { xs: '5%', md: '-4%' },
-                          bottom: { xs: '-20%', md: 0 },
-
-                          '& img': {
-                            objectFit: { xs: 'contain', md: 'cover' },
-                            objectPosition: 'center',
-                            transform: { xs: 'scale(1.2)', md: 'scale(1)' },
-                          },
-                        }}
-                      >
-                        <Image
-                          src="/qr-mock-1.webp"
-                          alt="QR Scanning Interface"
-                          fill
-                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                        />
-                      </Box>
-                    </Box>
-                    <Box
-                      sx={{
-                        position: 'relative',
-                        flex: 1,
-                        width: '100%',
-                        borderRadius: '16px',
-                        overflow: 'hidden',
-                        border: '1px solid rgba(255,255,255,0.08)',
-                        background: 'rgba(255, 255, 255, 0.03)',
-                        backdropFilter: 'blur(10px)',
-                      }}
-                    >
-                      <Image
-                        src="/qr-mock-2.webp"
-                        alt="Kiosk Interface"
-                        fill
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                        style={{ objectFit: 'cover' }}
-                      />
-                    </Box>
+                  <Box sx={{ height: 380, position: 'relative', mb: 4, width: '100%' }}>
+                    <CheckInVisual color="#00C8FF" hideText size={280} />
                   </Box>
                   <Stack direction="row" spacing={1} flexWrap="nowrap" sx={{ overflow: 'hidden' }}>
                     {['QR SCAN', 'KIOSK', 'BADGE PRINT', 'WALK-IN'].map((tag) => (
@@ -196,10 +132,10 @@ export default function OperationalMuscleSection() {
             </Grid>
 
             {/* Right Column Grid */}
-            <Grid item xs={12} lg={7}>
+            <Grid size={{ xs: 12, lg: 7 }}>
               <Grid container spacing={3}>
                 {/* Real-time Analytics */}
-                <Grid item xs={12}>
+                <Grid size={{ xs: 12 }}>
                   <MotionBox variants={fadeInUp}>
                     <Paper sx={glossCardStyle}>
                       <Typography variant="h6" sx={{ fontWeight: 800, mb: 1, letterSpacing: '-0.01em' }}>
@@ -212,19 +148,23 @@ export default function OperationalMuscleSection() {
                         while it's still happening.
                       </Typography>
                       <Box sx={{ display: 'flex', alignItems: 'flex-end', gap: 1.5, height: 100, mb: 2 }}>
-                        {[40, 60, 45, 80, 50, 90, 70, 85, 60].map((h, i) => (
-                          <MotionBox
-                            key={i}
-                            initial={{ height: 0, opacity: 0 }}
-                            whileInView={{ height: `${h}%`, opacity: 0.6 + i * 0.05 }}
-                            transition={{ delay: i * 0.05, duration: 0.5 }}
-                            sx={{
-                              flex: 1,
-                              bgcolor: '#00C8FF',
-                              borderRadius: '4px',
-                            }}
-                          />
-                        ))}
+                        {[40, 60, 45, 80, 50, 90, 70, 85, 60].map((h, i) => {
+                          const barColors = ['#00b4ff', '#7b61ff', '#00dca0', '#ff7832', '#ff6161', '#ffb800'];
+                          const color = barColors[i % barColors.length];
+                          return (
+                            <MotionBox
+                              key={i}
+                              initial={{ height: 0, opacity: 0 }}
+                              whileInView={{ height: `${h}%`, opacity: 0.6 + i * 0.05 }}
+                              transition={{ delay: i * 0.05, duration: 0.5 }}
+                              sx={{
+                                flex: 1,
+                                background: `linear-gradient(to top, ${color}20 0%, ${color} 100%)`,
+                                borderRadius: '4px',
+                              }}
+                            />
+                          );
+                        })}
                         <Box sx={{ ml: 'auto', textAlign: 'right', minWidth: '120px' }}>
                           <Typography sx={{ fontSize: '0.62rem', color: 'rgba(255,255,255,0.4)', fontWeight: 800, letterSpacing: '0.05em' }}>
                             LIVE / SESSIONS
@@ -249,7 +189,7 @@ export default function OperationalMuscleSection() {
                 </Grid>
 
                 {/* Multilingual & Branded */}
-                <Grid item xs={12} sm={6}>
+                <Grid size={{ xs: 12, sm: 6 }}>
                   <MotionBox variants={fadeInUp} sx={{ height: '100%' }}>
                     <Paper sx={{ ...glossCardStyle, height: '100%', pb: 3 }}>
                       <Typography variant="h6" sx={{ fontWeight: 800, mb: 1, letterSpacing: '-0.01em', lineHeight: 1.2 }}>
@@ -260,8 +200,8 @@ export default function OperationalMuscleSection() {
                       >
                         EN/AR out of the box, custom branding per event — your skin, not ours.
                       </Typography>
-                      <Grid container spacing={1.5} marginTop={5}>
-                        <Grid item xs={6}>
+                      <Grid container spacing={1.5} sx={{ mt: 5 }}>
+                        <Grid size={{ xs: 6 }}>
                           <Box
                             sx={{
                               p: 1.5,
@@ -282,7 +222,7 @@ export default function OperationalMuscleSection() {
                             <Typography sx={{ fontSize: '1rem', fontWeight: 800 }}>Welcome</Typography>
                           </Box>
                         </Grid>
-                        <Grid item xs={6}>
+                        <Grid size={{ xs: 6 }}>
                           <Box
                             sx={{
                               p: 1.5,
@@ -310,7 +250,7 @@ export default function OperationalMuscleSection() {
                 </Grid>
 
                 {/* Email & WhatsApp */}
-                <Grid item xs={12} sm={6}>
+                <Grid size={{ xs: 12, sm: 6 }}>
                   <MotionBox variants={fadeInUp}>
                     <Paper sx={glossCardStyle}>
                       <Typography variant="h6" sx={{ fontWeight: 800, mb: 1, letterSpacing: '-0.01em' }}>
@@ -394,11 +334,11 @@ export default function OperationalMuscleSection() {
             </Grid>
 
             {/* Hardware Bar */}
-            <Grid item xs={12}>
+            <Grid size={{ xs: 12 }}>
               <MotionBox variants={fadeInUp}>
                 <Paper sx={glossCardStyle}>
-                  <Grid container spacing={4} alignItems="center">
-                    <Grid item xs={12} md={4}>
+                  <Grid container spacing={4} sx={{ alignItems: 'center' }}>
+                    <Grid size={{ xs: 12, md: 4 }}>
                       <Typography variant="h6" sx={{ fontWeight: 800, mb: 1, letterSpacing: '-0.01em' }}>
                         Self-service Kiosks & Hardware.
                       </Typography>
@@ -407,10 +347,10 @@ export default function OperationalMuscleSection() {
                         booths — installed and supported on-site.
                       </Typography>
                     </Grid>
-                    <Grid item xs={12} md={8}>
+                    <Grid size={{ xs: 12, md: 8 }}>
                       <Grid container spacing={2}>
                         {hardwareItems.map((item, idx) => (
-                          <Grid item xs={6} sm={3} key={idx}>
+                          <Grid size={{ xs: 6, sm: 3 }} key={idx}>
                             <MotionBox
                               whileHover={{ y: -8, scale: 1.02 }}
                               sx={{
@@ -461,3 +401,4 @@ export default function OperationalMuscleSection() {
     </Box>
   );
 }
+

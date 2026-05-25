@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 import React from 'react';
 import { Box, Typography, Container } from '@mui/material';
 import Image from 'next/image';
@@ -180,7 +180,7 @@ export default function StatsAndProductSection() {
             }}
           >
             <Image
-              src="/eventpass.webp"
+              src="/images/eventpass.webp"
               alt="EventPass Platform Mockup"
               fill
               sizes="(max-width: 900px) 100vw, 80vw"
