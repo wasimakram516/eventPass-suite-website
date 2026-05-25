@@ -57,13 +57,31 @@ export default function HeroSection() {
     >
       {/* ── Background ── */}
       <Box sx={{ position: 'absolute', inset: 0, zIndex: 0, pointerEvents: 'none', }}>
-        <Image
-          src="/images/background-image.webp"
-          alt=""
-          fill
-          style={{ objectFit: 'cover', objectPosition: 'center', opacity: 0.4 }}
-          priority
-        />
+        {env.heroVideoUrl ? (
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            style={{
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              objectPosition: 'center',
+              opacity: 0.4
+            }}
+          >
+            <source src={env.heroVideoUrl} type="video/mp4" />
+          </video>
+        ) : (
+          <Image
+            src="/images/background-image.webp"
+            alt=""
+            fill
+            style={{ objectFit: 'cover', objectPosition: 'center', opacity: 0.4 }}
+            priority
+          />
+        )}
         <Box
           sx={{
             position: 'absolute',

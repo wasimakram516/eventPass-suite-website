@@ -147,6 +147,8 @@ export default function Navbar() {
 
             <Box sx={{ display: { xs: 'none', md: 'block' }, flexShrink: 0 }}>
               <Button
+                component={Link}
+                href="/contact"
                 variant="contained"
                 sx={{
                   bgcolor: '#00C8FF',
@@ -242,6 +244,9 @@ export default function Navbar() {
             })}
             <ListItem sx={{ mt: 4, px: 0 }}>
               <Button
+                component={Link}
+                href="/contact"
+                onClick={() => setMobileOpen(false)}
                 fullWidth
                 variant="contained"
                 sx={{
@@ -249,9 +254,10 @@ export default function Navbar() {
                   color: '#000',
                   fontWeight: 700,
                   py: 1.5,
-                  borderRadius: '12px',
+                  borderRadius: '100px',
+                  textDecoration: 'none',
+                  textAlign: 'center',
                 }}
-                onClick={() => handleLinkClick({ href: '/contact', isPage: true })}
               >
                 Book a Demo
               </Button>
