@@ -365,11 +365,11 @@ export default function ContactPage() {
                       href="https://wa.me/96877121757"
                     />
                     
-                    <ContactCard 
-                      icon={<MailOutlineIcon />} 
-                      title={`Email ${env.contactToEmail.split('@')[0] || 'solutions'}`}
+                    <ContactCard
+                      icon={<MailOutlineIcon />}
+                      title="Email solutions"
                       subtitle="Detailed inquiries"
-                      href={`mailto:${env.contactToEmail}`}
+                      href="mailto:solutions@whitewall.om"
                     />
 
                     <Box sx={{ 

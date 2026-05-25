@@ -188,14 +188,16 @@ export default function Navbar() {
         anchor="right"
         open={mobileOpen}
         onClose={() => setMobileOpen(false)}
-        PaperProps={{
-          sx: {
-            width: '100%',
-            maxWidth: 300,
-            bgcolor: '#000',
-            backgroundImage: 'none',
-            borderLeft: '1px solid rgba(255,255,255,0.1)',
-            zIndex: 1500,
+        slotProps={{
+          paper: {
+            sx: {
+              width: '100%',
+              maxWidth: 300,
+              bgcolor: '#000',
+              backgroundImage: 'none',
+              borderLeft: '1px solid rgba(255,255,255,0.1)',
+              zIndex: 1500,
+            },
           },
         }}
       >
@@ -235,8 +237,8 @@ export default function Navbar() {
                 >
                   <ListItemText
                     primary={item.label}
-                    primaryTypographyProps={{
-                      sx: { fontSize: '1.1rem', fontWeight: isActive ? 700 : 600 },
+                    slotProps={{
+                      primary: { sx: { fontSize: '1.1rem', fontWeight: isActive ? 700 : 600 } },
                     }}
                   />
                 </ListItem>
