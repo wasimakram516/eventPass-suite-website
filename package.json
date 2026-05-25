@@ -12,17 +12,17 @@
     "@emotion/cache": "^11.14.0",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
-    "@mui/icons-material": "^6.5.0",
-    "@mui/material": "^6.5.0",
-    "@mui/system": "^6.5.0",
-    "framer-motion": "^12.38.0",
-    "next": "16.2.4",
-    "nodemailer": "^8.0.7",
-    "react": "19.2.4",
-    "react-dom": "19.2.4"
+    "@mui/icons-material": "^9.0.1",
+    "@mui/material": "^9.0.1",
+    "@mui/system": "^9.0.1",
+    "framer-motion": "^12.40.0",
+    "next": "16.2.6",
+    "nodemailer": "^8.0.8",
+    "react": "19.2.6",
+    "react-dom": "19.2.6"
   },
   "devDependencies": {
-    "eslint": "^9",
-    "eslint-config-next": "16.2.4"
+    "eslint": "^10",
+    "eslint-config-next": "16.2.6"
   }
 }
