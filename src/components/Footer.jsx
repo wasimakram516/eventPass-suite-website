@@ -101,12 +101,16 @@ export default function Footer() {
         <Grid container spacing={{ xs: 3, md: 10 }}>
           
           {/* Section 1: Logo & Branding */}
-          <Grid item xs={12} md={4}>
+          <Grid size={{ xs: 12, md: 4 }}>
             <Box component={motion.div} variants={fadeInUp}>
               <Stack spacing={{ xs: 0, md: 0 }} alignItems={{ xs: 'center', md: 'flex-start' }}>
-                <Box sx={{ position: 'relative', width: { xs: 200, md: 250 }, height: { xs: 150, md: 200 } }}>
+                <Box
+                  component={Link}
+                  href="/"
+                  sx={{ position: 'relative', width: { xs: 200, md: 250 }, height: { xs: 150, md: 200 }, display: 'block' }}
+                >
                   <Image
-                    src="/logo.webp"
+                    src="/logo.png"
                     alt="WhiteWall Digital Solutions"
                     fill
                     sizes="(max-width: 600px) 160px, 220px"
@@ -127,7 +131,7 @@ export default function Footer() {
           </Grid>
 
           {/* Section 2: Quick Links & Follow Us */}
-          <Grid item xs={12} sm={6} md={3}>
+          <Grid size={{ xs: 12, sm: 6, md: 3 }}>
             <Box component={motion.div} variants={fadeInUp} sx={{ textAlign: { xs: 'center', md: 'left' } }}>
               <Typography sx={{ 
                 fontWeight: 800, 
@@ -211,7 +215,7 @@ export default function Footer() {
           </Grid>
 
           {/* Section 3: Contact */}
-          <Grid item xs={12} sm={6} md={5}>
+          <Grid size={{ xs: 12, sm: 6, md: 5 }}>
             <Box component={motion.div} variants={fadeInUp} sx={{ textAlign: { xs: 'center', md: 'left' } }}>
               <Typography sx={{ 
                 fontWeight: 800, 
@@ -223,8 +227,8 @@ export default function Footer() {
               }}>
                 Get In Touch
               </Typography>
-              <Grid container spacing={2} justifyContent={{ xs: 'center', md: 'flex-start' }}>
-                <Grid item xs={12} sm={6} md={12}>
+              <Grid container spacing={2} sx={{ justifyContent: { xs: 'center', md: 'flex-start' } }}>
+                <Grid size={{ xs: 12, sm: 6, md: 12 }}>
                   <Stack direction="row" spacing={1.5} alignItems="center" justifyContent={{ xs: 'center', md: 'flex-start' }}>
                     <EmailIcon sx={{ color: '#00C8FF', fontSize: '1.1rem' }} />
                     <MuiLink href={`mailto:${contact.email}`} sx={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', fontSize: { xs: '0.75rem', md: '0.9rem' }, '&:hover': { color: '#fff' } }}>
@@ -232,7 +236,7 @@ export default function Footer() {
                     </MuiLink>
                   </Stack>
                 </Grid>
-                <Grid item xs={12} sm={6} md={12}>
+                <Grid size={{ xs: 12, sm: 6, md: 12 }}>
                   <Stack direction="row" spacing={1.5} alignItems="center" justifyContent={{ xs: 'center', md: 'flex-start' }}>
                     <PhoneIcon sx={{ color: '#00C8FF', fontSize: '1.1rem' }} />
                     <MuiLink href={`tel:${contact.phone.replace(/\s+/g, '')}`} sx={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', fontSize: { xs: '0.75rem', md: '0.9rem' }, '&:hover': { color: '#fff' } }}>
@@ -240,7 +244,7 @@ export default function Footer() {
                     </MuiLink>
                   </Stack>
                 </Grid>
-                <Grid item xs={12} sm={6} md={12}>
+                <Grid size={{ xs: 12, sm: 6, md: 12 }}>
                   <Stack direction="row" spacing={1.5} alignItems="flex-start" justifyContent={{ xs: 'center', md: 'flex-start' }}>
                     <LocationOnIcon sx={{ color: '#00C8FF', fontSize: '1.2rem', mt: 0.3 }} />
                     <Box sx={{ textAlign: 'left' }}>
@@ -281,3 +285,4 @@ export default function Footer() {
     </Box>
   );
 }
+
