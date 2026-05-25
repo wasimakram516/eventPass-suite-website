@@ -96,7 +96,7 @@ export default function RSVPNStepSection() {
               sx={{
                 display: { xs: 'none', md: 'block' },
                 position: 'absolute',
-                top: '127px',
+                top: '97px',
                 left: '40px',
                 right: '40px',
                 height: '1px',
