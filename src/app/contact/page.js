@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 import { useState } from 'react';
 import { Box, Typography, Button, Container, Grid, TextField, CircularProgress } from '@mui/material';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -6,10 +6,9 @@ import { MotionBox, fadeInUp, staggerContainer } from '@/components/Animations';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
-import MailOutlineIcon from '@mui/icons-material/MailOutline';
-import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+import MailOutlineIcon from '@mui/icons-material/MailOutlined';
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutlined';
 import CustomAlert from '@/components/CustomAlert';
-import Loader from '@/components/Loader';
 import env from '@/config/env';
 import { COUNTRY_CODES, DEFAULT_COUNTRY_CODE, validatePhoneNumber } from '@/utils/countryCodes';
 import CountryCodeSelector from '@/components/CountryCodeSelector';
@@ -146,7 +145,6 @@ export default function ContactPage() {
 
   return (
     <Box sx={{ bgcolor: '#000', minHeight: '100vh', color: '#fff', overflow: 'hidden' }}>
-      <Loader isLoading={status === 'loading'} text="Sending Message..." />
       <Navbar />
       
       <Box sx={{ pt: { xs: 15, md: 20 }, pb: 10, position: 'relative' }}>
@@ -218,9 +216,9 @@ export default function ContactPage() {
               </MotionBox>
             </Box>
 
-            <Grid container spacing={{ xs: 4, md: 6 }} justifyContent="center">
+            <Grid container spacing={{ xs: 4, md: 6 }} sx={{ justifyContent: 'center' }}>
               {/* Form Section */}
-              <Grid item xs={12} md={7.5}>
+              <Grid size={{ xs: 12, md: 7.5 }}>
                 <MotionBox 
                   variants={fadeInUp}
                   sx={{
@@ -237,7 +235,7 @@ export default function ContactPage() {
                   
                   <Box component="form" onSubmit={handleSubmit} noValidate>
                     <Grid container spacing={2.25}>
-                      <Grid item xs={12} sm={6}>
+                      <Grid size={{ xs: 12, sm: 6 }}>
                         <CustomTextField 
                           label="Full Name" 
                           requiredLabel
@@ -250,7 +248,7 @@ export default function ContactPage() {
                           helperText={formErrors.name}
                         />
                       </Grid>
-                      <Grid item xs={12} sm={6}>
+                      <Grid size={{ xs: 12, sm: 6 }}>
                         <CustomTextField 
                           label="Company" 
                           requiredLabel={false}
@@ -261,7 +259,7 @@ export default function ContactPage() {
                           onChange={handleChange}
                         />
                       </Grid>
-                      <Grid item xs={12} md={6}>
+                      <Grid size={{ xs: 12, md: 6 }}>
                         <PhoneField
                           label="Phone Number"
                           value={formState.phone}
@@ -276,7 +274,7 @@ export default function ContactPage() {
                           }}
                         />
                       </Grid>
-                      <Grid item xs={12} md={6}>
+                      <Grid size={{ xs: 12, md: 6 }}>
                         <CustomTextField 
                           label="Email Address" 
                           requiredLabel
@@ -292,7 +290,7 @@ export default function ContactPage() {
                           helperText={formErrors.email}
                         />
                       </Grid>
-                      <Grid item xs={12}>
+                      <Grid size={{ xs: 12 }}>
                         <CustomTextField 
                           label="Message" 
                           requiredLabel
@@ -307,7 +305,7 @@ export default function ContactPage() {
                           helperText={formErrors.message}
                         />
                       </Grid>
-                      <Grid item xs={12}>
+                      <Grid size={{ xs: 12 }}>
                         <Button
                           type="submit"
                           variant="contained"
@@ -353,7 +351,7 @@ export default function ContactPage() {
               </Grid>
 
               {/* Contact Methods Section */}
-              <Grid item xs={12} md={4}>
+              <Grid size={{ xs: 12, md: 4 }}>
                 <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
                   <MotionBox variants={fadeInUp}>
                     <Typography variant="h6" sx={{ fontWeight: 700, mb: 3 }}>
@@ -369,9 +367,9 @@ export default function ContactPage() {
                     
                     <ContactCard 
                       icon={<MailOutlineIcon />} 
-                      title={`Email ${env.contactEmail.split('@')[0] || 'solutions'}`} 
+                      title={`Email ${env.contactToEmail.split('@')[0] || 'solutions'}`}
                       subtitle="Detailed inquiries"
-                      href={`mailto:${env.contactEmail}`}
+                      href={`mailto:${env.contactToEmail}`}
                     />
 
                     <Box sx={{ 
@@ -650,3 +648,4 @@ function ContactCard({ icon, title, subtitle, href }) {
     </Button>
   );
 }
+
