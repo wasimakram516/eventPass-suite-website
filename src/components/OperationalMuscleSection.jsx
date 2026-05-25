@@ -89,7 +89,7 @@ export default function OperationalMuscleSection() {
                   <Box sx={{ height: 380, position: 'relative', mb: 4, width: '100%' }}>
                     <CheckInVisual color="#00C8FF" hideText size={280} />
                   </Box>
-                  <Stack direction="row" spacing={1} flexWrap="nowrap" sx={{ overflow: 'hidden' }}>
+                  <Stack direction="row" spacing={1} sx={{ flexWrap: 'nowrap', overflow: 'hidden' }}>
                     {['QR SCAN', 'KIOSK', 'BADGE PRINT', 'WALK-IN'].map((tag) => (
                       <Box
                         key={tag}
