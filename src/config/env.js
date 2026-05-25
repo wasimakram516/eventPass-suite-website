@@ -7,7 +7,7 @@ const env = {
   emailUser: process.env.EMAIL_USER || process.env.SMTP_USER || '',
   emailPass: process.env.EMAIL_PASS || process.env.SMTP_PASS || '',
   emailSecure: (process.env.EMAIL_SECURE || process.env.SMTP_SECURE || 'false') === 'true',
-  contactToEmail: process.env.NEXT_PUBLIC_CONTACT_TO_EMAIL || process.env.CONTACT_TO_EMAIL || 'solutions@whitewall.om',
+  contactToEmail: process.env.CONTACT_TO_EMAIL || 'solutions@whitewall.om',
   contactFromEmail: process.env.CONTACT_FROM_EMAIL || 'EventPass Website <connect@whitewall.om>',
   heroVideoUrl: process.env.NEXT_PUBLIC_HERO_SECTION_VIDEO_URL || '',
 };
