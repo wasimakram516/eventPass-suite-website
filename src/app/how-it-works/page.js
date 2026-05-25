@@ -551,9 +551,9 @@ const StepRow = ({ step, index, isMobile }) => {
 
       {/* ── DESKTOP LAYOUT: two-column, alternating sides ── */}
       {!isMobile && (
-        <Grid container alignItems="center" sx={{ position: 'relative' }}>
+        <Grid container sx={{ alignItems: 'center', position: 'relative' }}>
           {/* Info column */}
-          <Grid item md={6} sx={{ order: isEven ? 1 : 2 }}>
+          <Grid size={{ md: 6 }} sx={{ order: isEven ? 1 : 2 }}>
             <MotionBox
               variants={fadeInUp}
               sx={{
@@ -595,7 +595,7 @@ const StepRow = ({ step, index, isMobile }) => {
           </Grid>
 
           {/* Visual column */}
-          <Grid item md={6} sx={{ order: isEven ? 2 : 1 }}>
+          <Grid size={{ md: 6 }} sx={{ order: isEven ? 2 : 1 }}>
             <MotionBox
               variants={fadeInUp}
               sx={{
