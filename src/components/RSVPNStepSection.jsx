@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 import React from 'react';
 import { Box, Container, Typography, Grid, Chip } from '@mui/material';
 import { 
@@ -106,7 +106,7 @@ export default function RSVPNStepSection() {
             />
 
             {steps.map((item, index) => (
-              <Grid item xs={12} sm={6} md={3} key={index}>
+              <Grid size={{ xs: 12, sm: 6, md: 3 }} key={index}>
                 <MotionBox variants={fadeInUp} sx={{ position: 'relative', zIndex: 1 }}>
                   
                   {/* Step Label */}

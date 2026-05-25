@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 import React from 'react';
 import { Box, Container, Typography, Grid, Paper } from '@mui/material';
 import Image from 'next/image';
@@ -186,9 +186,9 @@ export default function OneStopShopSection() {
             </Typography>
           </MotionBox>
 
-          <Grid container spacing={{ xs: 6, lg: 10 }} alignItems="center">
+          <Grid container spacing={{ xs: 6, lg: 10 }} sx={{ alignItems: 'center' }}>
             {/* Left Side: Cube Image */}
-            <Grid item xs={12} lg={6.5}>
+            <Grid size={{ xs: 12, lg: 6.5 }}>
               <MotionBox
                 variants={fadeInUp}
                 animate={{ 
@@ -207,7 +207,7 @@ export default function OneStopShopSection() {
                 }}
               >
                 <Image
-                  src="/cube.webp"
+                  src="/images/cube.webp"
                   alt="EventPass Engagement Cube"
                   fill
                   style={{ objectFit: 'contain' }}
@@ -217,7 +217,7 @@ export default function OneStopShopSection() {
             </Grid>
 
             {/* Right Side: Modules */}
-            <Grid item xs={12} lg={5.5}>
+            <Grid size={{ xs: 12, lg: 5.5 }}>
               <Box sx={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
                 {categories.map((cat, idx) => (
                   <MotionBox variants={fadeInUp} key={idx}>
@@ -235,7 +235,7 @@ export default function OneStopShopSection() {
                     </Typography>
                     <Grid container spacing={2}>
                       {cat.items.map((item, iIdx) => (
-                        <Grid item xs={12} sm={6} key={iIdx}>
+                        <Grid size={{ xs: 12, sm: 6 }} key={iIdx}>
                           <MotionBox
                             whileHover={{ y: -4, scale: 1.02 }}
                             transition={{ duration: 0.2 }}
@@ -256,3 +256,4 @@ export default function OneStopShopSection() {
     </Box>
   );
 }
+

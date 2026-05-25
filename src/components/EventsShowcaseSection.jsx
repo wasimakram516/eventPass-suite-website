@@ -1,14 +1,14 @@
-'use client';
+﻿'use client';
 import React from 'react';
 import { Box, Container, Typography, Grid, Paper } from '@mui/material';
 import Image from 'next/image';
 import { MotionBox, fadeInUp, staggerContainer } from './Animations';
 
 const events = [
-  { id: 1, src: '/event-1.webp', alt: 'Riyada Development Forum' },
-  { id: 2, src: '/event-2.webp', alt: 'OMNEX Feb 2026' },
-  { id: 3, src: '/event-3.webp', alt: 'OQRPI Open Day' },
-  { id: 4, src: '/event-4.webp', alt: 'FIA: MENA Council' },
+  { id: 1, src: '/images/events/event-1.webp', alt: 'Riyada Development Forum' },
+  { id: 2, src: '/images/events/event-2.webp', alt: 'OMNEX Feb 2026' },
+  { id: 3, src: '/images/events/event-3.webp', alt: 'OQRPI Open Day' },
+  { id: 4, src: '/images/events/event-4.webp', alt: 'FIA: MENA Council' },
 ];
 
 export default function EventsShowcaseSection() {
@@ -62,7 +62,7 @@ export default function EventsShowcaseSection() {
 
           <Grid container spacing={4}>
             {events.map((event) => (
-              <Grid item xs={12} md={6} key={event.id}>
+              <Grid size={{ xs: 12, md: 6 }} key={event.id}>
                 <MotionBox variants={fadeInUp} whileHover={{ y: -8, transition: { duration: 0.3 } }}>
                   <Paper
                     elevation={0}
@@ -99,3 +99,4 @@ export default function EventsShowcaseSection() {
     </Box>
   );
 }
+

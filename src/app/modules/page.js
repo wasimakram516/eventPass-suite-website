@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 import React from 'react';
 import { Box, Container, Typography, Grid } from '@mui/material';
 import Navbar from '@/components/Navbar';
@@ -170,7 +170,7 @@ export default function ModulesPage() {
               
               <Grid container spacing={{ xs: 3, md: 4 }}>
                 {category.modules.map((module) => (
-                  <Grid item xs={12} sm={6} md={category.modules.length === 4 ? 3 : 4} key={module.name}>
+                  <Grid size={{ xs: 12, sm: 6, md: category.modules.length === 4 ? 3 : 4 }} key={module.name}>
                     <ModuleCard 
                       {...module} 
                       color={category.color} 
@@ -188,3 +188,4 @@ export default function ModulesPage() {
     </Box>
   );
 }
+

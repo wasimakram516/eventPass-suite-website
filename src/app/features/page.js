@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 import React from 'react';
 import { Box, Typography, Container, Grid } from '@mui/material';
 import { motion } from 'framer-motion';
@@ -312,7 +312,7 @@ export default function FeaturesPage() {
         >
           <Grid container spacing={4}>
             {features.map((f, i) => (
-              <Grid item xs={12} sm={6} md={4} key={f.title}>
+              <Grid size={{ xs: 12, sm: 6, md: 4 }} key={f.title}>
                 <FeatureCard 
                   icon={f.icon}
                   title={f.title}
@@ -331,3 +331,4 @@ export default function FeaturesPage() {
     </Box>
   );
 }
+

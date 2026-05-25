@@ -1,9 +1,9 @@
-'use client';
+﻿'use client';
 import React from 'react';
 import { Box, Container, Typography, Grid, Paper, Stack } from '@mui/material';
 import Image from 'next/image';
 import RefreshIcon from '@mui/icons-material/Refresh';
-import MailOutlineIcon from '@mui/icons-material/MailOutline';
+import MailOutlineIcon from '@mui/icons-material/MailOutlined';
 import DevicesIcon from '@mui/icons-material/Smartphone';
 import PrintIcon from '@mui/icons-material/Print';
 import QrCodeScannerIcon from '@mui/icons-material/QrCode';
@@ -61,7 +61,7 @@ export default function OperationalMuscleSection() {
           </MotionBox>
 
           <Grid container spacing={3}>
-            <Grid item xs={12} lg={5}>
+            <Grid size={{ xs: 12, lg: 5 }}>
               <MotionBox variants={fadeInUp} sx={{ height: '100%' }}>
                 <Paper sx={{ ...glossCardStyle, height: '100%' }}>
                   <Typography
@@ -125,7 +125,7 @@ export default function OperationalMuscleSection() {
                         }}
                       >
                         <Image
-                          src="/qr-mock-1.webp"
+                          src="/images/mock/qr-mock-1.webp"
                           alt="QR Scanning Interface"
                           fill
                           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -145,7 +145,7 @@ export default function OperationalMuscleSection() {
                       }}
                     >
                       <Image
-                        src="/qr-mock-2.webp"
+                        src="/images/mock/qr-mock-2.webp"
                         alt="Kiosk Interface"
                         fill
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -196,10 +196,10 @@ export default function OperationalMuscleSection() {
             </Grid>
 
             {/* Right Column Grid */}
-            <Grid item xs={12} lg={7}>
+            <Grid size={{ xs: 12, lg: 7 }}>
               <Grid container spacing={3}>
                 {/* Real-time Analytics */}
-                <Grid item xs={12}>
+                <Grid size={{ xs: 12 }}>
                   <MotionBox variants={fadeInUp}>
                     <Paper sx={glossCardStyle}>
                       <Typography variant="h6" sx={{ fontWeight: 800, mb: 1, letterSpacing: '-0.01em' }}>
@@ -249,7 +249,7 @@ export default function OperationalMuscleSection() {
                 </Grid>
 
                 {/* Multilingual & Branded */}
-                <Grid item xs={12} sm={6}>
+                <Grid size={{ xs: 12, sm: 6 }}>
                   <MotionBox variants={fadeInUp} sx={{ height: '100%' }}>
                     <Paper sx={{ ...glossCardStyle, height: '100%', pb: 3 }}>
                       <Typography variant="h6" sx={{ fontWeight: 800, mb: 1, letterSpacing: '-0.01em', lineHeight: 1.2 }}>
@@ -260,8 +260,8 @@ export default function OperationalMuscleSection() {
                       >
                         EN/AR out of the box, custom branding per event — your skin, not ours.
                       </Typography>
-                      <Grid container spacing={1.5} marginTop={5}>
-                        <Grid item xs={6}>
+                      <Grid container spacing={1.5} sx={{ mt: 5 }}>
+                        <Grid size={{ xs: 6 }}>
                           <Box
                             sx={{
                               p: 1.5,
@@ -282,7 +282,7 @@ export default function OperationalMuscleSection() {
                             <Typography sx={{ fontSize: '1rem', fontWeight: 800 }}>Welcome</Typography>
                           </Box>
                         </Grid>
-                        <Grid item xs={6}>
+                        <Grid size={{ xs: 6 }}>
                           <Box
                             sx={{
                               p: 1.5,
@@ -310,7 +310,7 @@ export default function OperationalMuscleSection() {
                 </Grid>
 
                 {/* Email & WhatsApp */}
-                <Grid item xs={12} sm={6}>
+                <Grid size={{ xs: 12, sm: 6 }}>
                   <MotionBox variants={fadeInUp}>
                     <Paper sx={glossCardStyle}>
                       <Typography variant="h6" sx={{ fontWeight: 800, mb: 1, letterSpacing: '-0.01em' }}>
@@ -394,11 +394,11 @@ export default function OperationalMuscleSection() {
             </Grid>
 
             {/* Hardware Bar */}
-            <Grid item xs={12}>
+            <Grid size={{ xs: 12 }}>
               <MotionBox variants={fadeInUp}>
                 <Paper sx={glossCardStyle}>
-                  <Grid container spacing={4} alignItems="center">
-                    <Grid item xs={12} md={4}>
+                  <Grid container spacing={4} sx={{ alignItems: 'center' }}>
+                    <Grid size={{ xs: 12, md: 4 }}>
                       <Typography variant="h6" sx={{ fontWeight: 800, mb: 1, letterSpacing: '-0.01em' }}>
                         Self-service Kiosks & Hardware.
                       </Typography>
@@ -407,10 +407,10 @@ export default function OperationalMuscleSection() {
                         booths — installed and supported on-site.
                       </Typography>
                     </Grid>
-                    <Grid item xs={12} md={8}>
+                    <Grid size={{ xs: 12, md: 8 }}>
                       <Grid container spacing={2}>
                         {hardwareItems.map((item, idx) => (
-                          <Grid item xs={6} sm={3} key={idx}>
+                          <Grid size={{ xs: 6, sm: 3 }} key={idx}>
                             <MotionBox
                               whileHover={{ y: -8, scale: 1.02 }}
                               sx={{
@@ -461,3 +461,4 @@ export default function OperationalMuscleSection() {
     </Box>
   );
 }
+
