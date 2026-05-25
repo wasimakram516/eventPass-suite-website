@@ -449,7 +449,7 @@ function PhoneField({ label, value, phoneCountryCode, errorMessage, onChange }) 
           type="tel"
           autoComplete="tel-national"
           placeholder="Phone number"
-          InputProps={{ disableUnderline: true }}
+          slotProps={{ input: { disableUnderline: true } }}
           sx={{
             flex: 1,
             minWidth: 0,
@@ -502,32 +502,33 @@ function CustomTextField({ label, requiredLabel = false, ...props }) {
       <TextField
         {...props}
         variant="standard"
-        inputProps={{
-          ...props.inputProps,
-          autoComplete: props.name === 'email' ? 'email' : props.inputProps?.autoComplete,
-        }}
-        FormHelperTextProps={{
-          sx: {
-            color: '#ff6b6b',
-            ml: 0,
-            mt: 0.75,
-            fontSize: '0.76rem',
-          }
-        }}
-        InputProps={{
-          disableUnderline: true,
-          sx: {
-            bgcolor: 'rgba(255,255,255,0.05)',
-            borderRadius: '12px',
-            px: 2,
-            py: 1.45,
-            color: '#fff',
-            fontSize: '0.9rem',
-            border: '1px solid rgba(255,255,255,0.1)',
-            transition: 'all 0.3s ease',
-            '&:focus-within': {
-              borderColor: '#00C8FF',
-              bgcolor: 'rgba(0, 200, 255, 0.05)',
+        slotProps={{
+          htmlInput: {
+            autoComplete: props.name === 'email' ? 'email' : undefined,
+          },
+          formHelperText: {
+            sx: {
+              color: '#ff6b6b',
+              ml: 0,
+              mt: 0.75,
+              fontSize: '0.76rem',
+            }
+          },
+          input: {
+            disableUnderline: true,
+            sx: {
+              bgcolor: 'rgba(255,255,255,0.05)',
+              borderRadius: '12px',
+              px: 2,
+              py: 1.45,
+              color: '#fff',
+              fontSize: '0.9rem',
+              border: '1px solid rgba(255,255,255,0.1)',
+              transition: 'all 0.3s ease',
+              '&:focus-within': {
+                borderColor: '#00C8FF',
+                bgcolor: 'rgba(0, 200, 255, 0.05)',
+              }
             }
           }
         }}
@@ -560,31 +561,33 @@ function CustomSelectField({ children, ...props }) {
       {...props}
       select
       variant="standard"
-      InputProps={{
-        disableUnderline: true,
-        sx: {
-          bgcolor: 'rgba(255,255,255,0.05)',
-          borderRadius: '12px',
-          px: 2,
-          py: 1.5,
-          color: '#fff',
-          fontSize: '0.95rem',
-          border: '1px solid rgba(255,255,255,0.1)',
-          transition: 'all 0.3s ease',
-          '&:focus-within': {
-            borderColor: '#00C8FF',
-            bgcolor: 'rgba(0, 200, 255, 0.05)',
+      slotProps={{
+        input: {
+          disableUnderline: true,
+          sx: {
+            bgcolor: 'rgba(255,255,255,0.05)',
+            borderRadius: '12px',
+            px: 2,
+            py: 1.5,
+            color: '#fff',
+            fontSize: '0.95rem',
+            border: '1px solid rgba(255,255,255,0.1)',
+            transition: 'all 0.3s ease',
+            '&:focus-within': {
+              borderColor: '#00C8FF',
+              bgcolor: 'rgba(0, 200, 255, 0.05)',
+            }
           }
-        }
-      }}
-      SelectProps={{
-        MenuProps: {
-          PaperProps: {
-            sx: {
-              bgcolor: '#071016',
-              color: '#fff',
-              border: '1px solid rgba(255,255,255,0.08)',
-              borderRadius: 2,
+        },
+        select: {
+          MenuProps: {
+            PaperProps: {
+              sx: {
+                bgcolor: '#071016',
+                color: '#fff',
+                border: '1px solid rgba(255,255,255,0.08)',
+                borderRadius: 2,
+              }
             }
           }
         }
