@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { Box, Typography, Button, Container } from '@mui/material';
 import Image from 'next/image';
 import env from '@/config/env';
+import { useGlobalConfig } from '@/components/GlobalConfigProvider';
 import { AnimatedNumber, MotionBox, fadeInUp, staggerContainer } from './Animations';
 
 const DESIGN_W = 700;
@@ -11,6 +12,10 @@ const DESIGN_H = 580;
 export default function HeroSection() {
   const rightOuterRef = useRef(null);
   const [scale, setScale] = useState(0.5);
+  const { config } = useGlobalConfig();
+
+  const heroMediaUrl = config?.brandingMediaUrl || '';
+  const isVideoBackground = Boolean(heroMediaUrl) && /\.(mp4|webm|ogg|mov|m4v)(\?|#|$)/i.test(heroMediaUrl);
 
   const measure = useCallback(() => {
     if (rightOuterRef.current) {
@@ -57,7 +62,7 @@ export default function HeroSection() {
     >
       {/* ── Background ── */}
       <Box sx={{ position: 'absolute', inset: 0, zIndex: 0, pointerEvents: 'none', }}>
-        {env.heroVideoUrl ? (
+        {isVideoBackground ? (
           <video
             autoPlay
             muted
@@ -71,8 +76,21 @@ export default function HeroSection() {
               opacity: 0.4
             }}
           >
-            <source src={env.heroVideoUrl} type="video/mp4" />
+            <source src={heroMediaUrl} type="video/mp4" />
           </video>
+        ) : heroMediaUrl ? (
+          <Box
+            component="img"
+            src={heroMediaUrl}
+            alt=""
+            sx={{
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              objectPosition: 'center',
+              opacity: 0.4,
+            }}
+          />
         ) : (
           <Image
             src="/images/background-image.webp"

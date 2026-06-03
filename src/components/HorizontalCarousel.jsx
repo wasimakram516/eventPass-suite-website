@@ -12,6 +12,11 @@ const marqueeFew = keyframes`
   100% { transform: translateX(-100%); }
 `;
 
+const marqueeSingle = keyframes`
+  0%   { transform: translateX(110vw); }
+  100% { transform: translateX(-110vw); }
+`;
+
 const normalizeUrl = (url) => {
   if (!url) return "";
   return /^https?:\/\//i.test(url) ? url : `https://${url}`;
@@ -76,6 +81,52 @@ export default function HorizontalCarousel({
     : [];
 
   if (!validItems.length) return null;
+
+  if (validItems.length === 1) {
+    return (
+      <Box
+        sx={{
+          py: containerPadding,
+          position: "relative",
+          overflow: "hidden",
+          ...(showBorders && {
+            borderTop: "1px solid rgba(255,255,255,0.06)",
+            borderBottom: "1px solid rgba(255,255,255,0.06)",
+          }),
+        }}
+      >
+        <Container
+          maxWidth={maxWidth}
+          sx={{
+            overflow: "hidden",
+            position: "relative",
+            px: "0 !important",
+            maxWidth: "100% !important",
+          }}
+        >
+          <Box sx={{ direction: "ltr" }}>
+            <Box
+              sx={{
+                display: "flex",
+                width: "max-content",
+                animation: `${marqueeSingle} 16s linear infinite`,
+                ...(pauseOnHover && {
+                  "&:hover": { animationPlayState: "paused" },
+                }),
+              }}
+            >
+              <CarouselItem
+                item={validItems[0]}
+                itemHeight={itemHeight}
+                itemMaxWidth={itemMaxWidth}
+                itemPadding={itemPadding}
+              />
+            </Box>
+          </Box>
+        </Container>
+      </Box>
+    );
+  }
 
   const isFew = validItems.length <= 5;
   const duration = isFew

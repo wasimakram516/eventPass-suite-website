@@ -14,23 +14,23 @@ import PhoneIcon from '@mui/icons-material/Phone';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import LanguageIcon from '@mui/icons-material/Language';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
+import LanguageIcon from '@mui/icons-material/Language';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { fadeInUp, staggerContainer } from './Animations';
+import { useGlobalConfig } from '@/components/GlobalConfigProvider';
 
 const contact = {
   email: 'solutions@whitewall.om',
   phone: '+968 77121757',
   location: 'TechnoPark, Ghala, Muscat Oman',
   website: 'https://whitewall.om',
-  displayWebsite: 'whitewall.om',
   cr: '1385457'
 };
 
-const socialLinks = [
+const defaultSocialLinks = [
   {
     label: 'Facebook',
     href: 'https://www.facebook.com/profile.php?id=61552622174388',
@@ -50,14 +50,47 @@ const socialLinks = [
 
 const quickLinks = [
   { name: 'Home', href: '/', isPage: true },
-  { name: 'Features', href: '/#features' },
-  { name: 'Modules', href: '/#modules' },
-  { name: 'How It Works', href: '/#how-it-works' },
-  { name: 'Events', href: '/#events' },
+  { name: 'Features', href: '/features' },
+  { name: 'Modules', href: '/modules' },
+  { name: 'How It Works', href: '/how-it-works' },
+  { name: 'Events', href: '/events' },
   { name: 'Contact', href: '/contact', isPage: true },
 ];
 
 export default function Footer() {
+  const { config } = useGlobalConfig();
+
+  const socialLinks = [
+    {
+      label: 'Facebook',
+      href: config?.socialLinks?.facebook || defaultSocialLinks[0].href,
+      icon: <FacebookIcon sx={{ fontSize: { xs: 20, md: 24 } }} />,
+    },
+    {
+      label: 'Instagram',
+      href: config?.socialLinks?.instagram || defaultSocialLinks[1].href,
+      icon: <InstagramIcon sx={{ fontSize: { xs: 20, md: 24 } }} />,
+    },
+    {
+      label: 'LinkedIn',
+      href: config?.socialLinks?.linkedin || defaultSocialLinks[2].href,
+      icon: <LinkedInIcon sx={{ fontSize: { xs: 20, md: 24 } }} />,
+    },
+  ].filter((social) => Boolean(social.href));
+
+  const websiteUrl = config?.socialLinks?.website || contact.website;
+  const websiteDisplay = websiteUrl
+    .replace(/^https?:\/\//i, '')
+    .replace(/\/$/, '');
+
+  const contactDetails = {
+    email: config?.contact?.email || contact.email,
+    phone: config?.contact?.phone || contact.phone,
+    location: contact.location,
+    website: websiteUrl,
+    cr: contact.cr,
+  };
+
   return (
     <Box
       component={motion.footer}
@@ -103,7 +136,7 @@ export default function Footer() {
           {/* Section 1: Logo & Branding */}
           <Grid size={{ xs: 12, md: 4 }}>
             <Box component={motion.div} variants={fadeInUp}>
-              <Stack spacing={{ xs: 0, md: 0 }} alignItems={{ xs: 'center', md: 'flex-start' }}>
+              <Stack spacing={{ xs: 0, md: 0 }} sx={{ alignItems: { xs: 'center', md: 'flex-start' } }}>
                 <Box
                   component={Link}
                   href="/"
@@ -146,8 +179,7 @@ export default function Footer() {
               <Stack 
                 direction={{ xs: 'row', md: 'column' }} 
                 spacing={{ xs: 2, md: 2 }} 
-                sx={{ mb: { xs: 3, md: 6 }, flexWrap: 'wrap', justifyContent: 'center' }}
-                alignItems={{ xs: 'center', md: 'flex-start' }}
+                sx={{ mb: { xs: 3, md: 6 }, flexWrap: 'wrap', justifyContent: 'center', alignItems: { xs: 'center', md: 'flex-start' } }}
               >
                 {quickLinks.map((link) => (
                   <MuiLink
@@ -181,7 +213,7 @@ export default function Footer() {
               }}>
                 Follow Us
               </Typography>
-              <Stack direction="row" spacing={1.5} justifyContent={{ xs: 'center', md: 'flex-start' }}>
+              <Stack direction="row" spacing={1.5} sx={{ justifyContent: { xs: 'center', md: 'flex-start' } }}>
                 {socialLinks.map((social) => (
                   <MuiLink
                     key={social.label}
@@ -229,23 +261,36 @@ export default function Footer() {
               </Typography>
               <Grid container spacing={2} sx={{ justifyContent: { xs: 'center', md: 'flex-start' } }}>
                 <Grid size={{ xs: 12, sm: 6, md: 12 }}>
-                  <Stack direction="row" spacing={1.5} alignItems="center" justifyContent={{ xs: 'center', md: 'flex-start' }}>
+                  <Stack direction="row" spacing={1.5} sx={{ alignItems: 'center', justifyContent: { xs: 'center', md: 'flex-start' } }}>
                     <EmailIcon sx={{ color: '#00C8FF', fontSize: '1.1rem' }} />
-                    <MuiLink href={`mailto:${contact.email}`} sx={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', fontSize: { xs: '0.75rem', md: '0.9rem' }, '&:hover': { color: '#fff' } }}>
-                      {contact.email}
+                    <MuiLink href={`mailto:${contactDetails.email}`} sx={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', fontSize: { xs: '0.75rem', md: '0.9rem' }, '&:hover': { color: '#fff' } }}>
+                      {contactDetails.email}
                     </MuiLink>
                   </Stack>
                 </Grid>
                 <Grid size={{ xs: 12, sm: 6, md: 12 }}>
-                  <Stack direction="row" spacing={1.5} alignItems="center" justifyContent={{ xs: 'center', md: 'flex-start' }}>
+                  <Stack direction="row" spacing={1.5} sx={{ alignItems: 'center', justifyContent: { xs: 'center', md: 'flex-start' } }}>
                     <PhoneIcon sx={{ color: '#00C8FF', fontSize: '1.1rem' }} />
-                    <MuiLink href={`tel:${contact.phone.replace(/\s+/g, '')}`} sx={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', fontSize: { xs: '0.75rem', md: '0.9rem' }, '&:hover': { color: '#fff' } }}>
-                      {contact.phone}
+                    <MuiLink href={`tel:${contactDetails.phone.replace(/\s+/g, '')}`} sx={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', fontSize: { xs: '0.75rem', md: '0.9rem' }, '&:hover': { color: '#fff' } }}>
+                      {contactDetails.phone}
                     </MuiLink>
                   </Stack>
                 </Grid>
                 <Grid size={{ xs: 12, sm: 6, md: 12 }}>
-                  <Stack direction="row" spacing={1.5} alignItems="flex-start" justifyContent={{ xs: 'center', md: 'flex-start' }}>
+                  <Stack direction="row" spacing={1.5} sx={{ alignItems: 'center', justifyContent: { xs: 'center', md: 'flex-start' } }}>
+                    <LanguageIcon sx={{ color: '#00C8FF', fontSize: '1.1rem' }} />
+                    <MuiLink
+                      href={contactDetails.website}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      sx={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', fontSize: { xs: '0.75rem', md: '0.9rem' }, '&:hover': { color: '#fff' } }}
+                    >
+                      {websiteDisplay}
+                    </MuiLink>
+                  </Stack>
+                </Grid>
+                <Grid size={{ xs: 12, sm: 6, md: 12 }}>
+                  <Stack direction="row" spacing={1.5} sx={{ alignItems: 'flex-start', justifyContent: { xs: 'center', md: 'flex-start' } }}>
                     <LocationOnIcon sx={{ color: '#00C8FF', fontSize: '1.2rem', mt: 0.3 }} />
                     <Box sx={{ textAlign: 'left' }}>
                       <Typography sx={{ color: 'rgba(255,255,255,0.7)', fontSize: { xs: '0.75rem', md: '0.9rem' }, lineHeight: 1.5 }}>
@@ -269,8 +314,7 @@ export default function Footer() {
           component={motion.div}
           variants={fadeInUp}
           direction={{ xs: 'column', md: 'row' }} 
-          justifyContent="space-between" 
-          alignItems="center" 
+          sx={{ justifyContent: 'space-between', alignItems: 'center' }}
           spacing={2}
         >
           <Typography sx={{ color: 'rgba(255,255,255,0.3)', fontSize: '0.7rem', fontWeight: 500, textAlign: 'center' }}>
