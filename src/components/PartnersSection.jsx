@@ -3,8 +3,9 @@ import React from 'react';
 import { Box } from '@mui/material';
 import HorizontalCarousel from './HorizontalCarousel';
 import { MotionBox, fadeInUp } from './Animations';
+import { useGlobalConfig } from '@/components/GlobalConfigProvider';
 
-const clientLogos = [
+const defaultClientLogos = [
   {
     name: "Takaful Oman",
     logoUrl: "https://res.cloudinary.com/dwva39slo/image/upload/v1759822090/EventPassSuite/images/rqjuebfk9o4xvafy0sqj.png",
@@ -98,6 +99,9 @@ const clientLogos = [
 ];
 
 export default function PartnersSection() {
+  const { config } = useGlobalConfig();
+  const clientLogos = config?.partnerLogos?.length ? config.partnerLogos : defaultClientLogos;
+
   return (
     <Box
       component="section"

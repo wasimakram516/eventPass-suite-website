@@ -9,7 +9,7 @@ import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import MailOutlineIcon from '@mui/icons-material/MailOutlined';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutlined';
 import CustomAlert from '@/components/CustomAlert';
-import env from '@/config/env';
+import { useGlobalConfig } from '@/components/GlobalConfigProvider';
 import { COUNTRY_CODES, DEFAULT_COUNTRY_CODE, validatePhoneNumber } from '@/utils/countryCodes';
 import CountryCodeSelector from '@/components/CountryCodeSelector';
 
@@ -20,6 +20,9 @@ const formatPhoneNumber = (countryCode, phone) => {
 };
 
 export default function ContactPage() {
+  const { config } = useGlobalConfig();
+  const contactEmail = config?.contact?.email || 'solutions@whitewall.om';
+  const contactPhone = config?.contact?.phone || '+968 77121757';
   const [formState, setFormState] = useState({
     name: '',
     company: '',
@@ -362,14 +365,14 @@ export default function ContactPage() {
                       icon={<WhatsAppIcon />} 
                       title="WhatsApp us" 
                       subtitle="Quick responses"
-                      href="https://wa.me/96877121757"
+                      href={`https://wa.me/${contactPhone.replace(/\D/g, '')}`}
                     />
                     
                     <ContactCard
                       icon={<MailOutlineIcon />}
                       title="Email solutions"
                       subtitle="Detailed inquiries"
-                      href="mailto:solutions@whitewall.om"
+                      href={`mailto:${contactEmail}`}
                     />
 
                     <Box sx={{ 

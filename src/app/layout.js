@@ -78,7 +78,7 @@ export default function RootLayout({ children }) {
           rel="stylesheet"
         />
       </head>
-      <body>
+      <body suppressHydrationWarning>
         <JsonLd />
         <ThemeRegistry>
           <ClientLayout>

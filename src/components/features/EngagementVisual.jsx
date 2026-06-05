@@ -3,6 +3,8 @@ import React from 'react';
 import { Box } from '@mui/material';
 import { motion } from 'framer-motion';
 
+const BAR_WIDTHS = ['78%', '56%', '84%'];
+
 export default function EngagementVisual({ color }) {
   return (
     <Box sx={{ 
@@ -65,7 +67,7 @@ export default function EngagementVisual({ color }) {
             <Box key={i} sx={{ height: 12, width: '100%', bgcolor: 'rgba(255,255,255,0.05)', borderRadius: 1, position: 'relative', overflow: 'hidden' }}>
               <motion.div
                 initial={{ width: 0 }}
-                animate={{ width: `${Math.random() * 60 + 30}%` }}
+                animate={{ width: BAR_WIDTHS[i - 1] }}
                 transition={{ duration: 2, repeat: Infinity, repeatType: 'reverse', delay: i * 0.2 }}
                 style={{ height: '100%', background: color, opacity: 0.3 }}
               />
