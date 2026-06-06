@@ -25,6 +25,7 @@ const navItems = [
   { label: 'Modules', href: '/modules', isPage: true },
   { label: 'How It Works', href: '/how-it-works', isPage: true },
   { label: 'Events', href: '/events', isPage: true },
+  { label: 'Pricing', href: '/pricing', isPage: true },
   { label: 'Contact Us', href: '/contact', isPage: true },
 ];
 

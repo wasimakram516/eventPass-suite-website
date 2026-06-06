@@ -54,6 +54,7 @@ const quickLinks = [
   { name: 'Modules', href: '/modules' },
   { name: 'How It Works', href: '/how-it-works' },
   { name: 'Events', href: '/events' },
+  { name: 'Pricing', href: '/pricing', isPage: true },
   { name: 'Contact', href: '/contact', isPage: true },
 ];
 
@@ -150,9 +151,9 @@ export default function Footer() {
                     style={{ objectFit: 'contain' }}
                   />
                 </Box>
-                <Typography sx={{ 
-                  color: 'rgba(255,255,255,0.5)', 
-                  fontSize: { xs: '0.8rem', md: '0.95rem' }, 
+                <Typography sx={{
+                  color: 'text.secondary',
+                  fontSize: { xs: '0.8rem', md: '0.95rem' },
                   lineHeight: 1.6,
                   maxWidth: { xs: '280px', md: '320px' },
                   textAlign: { xs: 'center', md: 'left' }
@@ -187,15 +188,12 @@ export default function Footer() {
                     component={link.isPage ? Link : 'a'}
                     href={link.href}
                     sx={{
-                      color: 'rgba(255,255,255,0.6)',
+                      color: 'text.secondary',
                       textDecoration: 'none',
                       fontSize: { xs: '0.75rem', md: '0.9rem' },
                       fontWeight: 500,
                       transition: 'all 0.2s ease',
-                      '&:hover': {
-                        color: '#00C8FF',
-                        pl: { xs: 0, md: 1 }
-                      }
+                      '&:hover': { color: '#00C8FF', pl: { xs: 0, md: 1 } },
                     }}
                   >
                     {link.name}
@@ -229,7 +227,7 @@ export default function Footer() {
                       justifyContent: 'center',
                       bgcolor: 'rgba(255,255,255,0.03)',
                       border: '1px solid rgba(255,255,255,0.1)',
-                      color: 'rgba(255,255,255,0.6)',
+                      color: 'text.secondary',
                       transition: 'all 0.3s ease',
                       '&:hover': {
                         color: '#00C8FF',
@@ -263,7 +261,7 @@ export default function Footer() {
                 <Grid size={{ xs: 12, sm: 6, md: 12 }}>
                   <Stack direction="row" spacing={1.5} sx={{ alignItems: 'center', justifyContent: { xs: 'center', md: 'flex-start' } }}>
                     <EmailIcon sx={{ color: '#00C8FF', fontSize: '1.1rem' }} />
-                    <MuiLink href={`mailto:${contactDetails.email}`} sx={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', fontSize: { xs: '0.75rem', md: '0.9rem' }, '&:hover': { color: '#fff' } }}>
+                    <MuiLink href={`mailto:${contactDetails.email}`} sx={{ color: 'text.secondary', textDecoration: 'none', fontSize: { xs: '0.75rem', md: '0.9rem' }, '&:hover': { color: '#fff' } }}>
                       {contactDetails.email}
                     </MuiLink>
                   </Stack>
@@ -271,7 +269,7 @@ export default function Footer() {
                 <Grid size={{ xs: 12, sm: 6, md: 12 }}>
                   <Stack direction="row" spacing={1.5} sx={{ alignItems: 'center', justifyContent: { xs: 'center', md: 'flex-start' } }}>
                     <PhoneIcon sx={{ color: '#00C8FF', fontSize: '1.1rem' }} />
-                    <MuiLink href={`tel:${contactDetails.phone.replace(/\s+/g, '')}`} sx={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', fontSize: { xs: '0.75rem', md: '0.9rem' }, '&:hover': { color: '#fff' } }}>
+                    <MuiLink href={`tel:${contactDetails.phone.replace(/\s+/g, '')}`} sx={{ color: 'text.secondary', textDecoration: 'none', fontSize: { xs: '0.75rem', md: '0.9rem' }, '&:hover': { color: '#fff' } }}>
                       {contactDetails.phone}
                     </MuiLink>
                   </Stack>
@@ -283,7 +281,7 @@ export default function Footer() {
                       href={contactDetails.website}
                       target="_blank"
                       rel="noopener noreferrer"
-                      sx={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', fontSize: { xs: '0.75rem', md: '0.9rem' }, '&:hover': { color: '#fff' } }}
+                      sx={{ color: 'text.secondary', textDecoration: 'none', fontSize: { xs: '0.75rem', md: '0.9rem' }, '&:hover': { color: '#fff' } }}
                     >
                       {websiteDisplay}
                     </MuiLink>
@@ -293,11 +291,11 @@ export default function Footer() {
                   <Stack direction="row" spacing={1.5} sx={{ alignItems: 'flex-start', justifyContent: { xs: 'center', md: 'flex-start' } }}>
                     <LocationOnIcon sx={{ color: '#00C8FF', fontSize: '1.2rem', mt: 0.3 }} />
                     <Box sx={{ textAlign: 'left' }}>
-                      <Typography sx={{ color: 'rgba(255,255,255,0.7)', fontSize: { xs: '0.75rem', md: '0.9rem' }, lineHeight: 1.5 }}>
+                      <Typography sx={{ color: 'text.secondary', fontSize: { xs: '0.75rem', md: '0.9rem' }, lineHeight: 1.5 }}>
                         TechnoPark, Ghala,<br />
                         Muscat Oman.
                       </Typography>
-                      <Typography sx={{ color: 'rgba(255,255,255,0.4)', fontSize: '0.7rem', mt: 1, letterSpacing: '0.05em' }}>
+                      <Typography variant="caption" sx={{ display: 'block', mt: 1, letterSpacing: '0.05em' }}>
                         CR: 1385457
                       </Typography>
                     </Box>
@@ -317,12 +315,13 @@ export default function Footer() {
           sx={{ justifyContent: 'space-between', alignItems: 'center' }}
           spacing={2}
         >
-          <Typography sx={{ color: 'rgba(255,255,255,0.3)', fontSize: '0.7rem', fontWeight: 500, textAlign: 'center' }}>
+          <Typography variant="caption" sx={{ fontWeight: 500, textAlign: 'center' }}>
             © {new Date().getFullYear()} WhiteWall Digital Solutions.
           </Typography>
           <Stack direction="row" spacing={3}>
-            <MuiLink href="#" sx={{ color: 'rgba(255,255,255,0.3)', fontSize: '0.7rem', textDecoration: 'none' }}>Privacy Policy</MuiLink>
-            <MuiLink href="#" sx={{ color: 'rgba(255,255,255,0.3)', fontSize: '0.7rem', textDecoration: 'none' }}>Terms</MuiLink>
+            <MuiLink href="#" sx={{ color: 'text.disabled', fontSize: '0.75rem', textDecoration: 'none', '&:hover': { color: 'text.primary' } }}>Privacy Policy</MuiLink>
+            <MuiLink href="#" sx={{ color: 'text.disabled', fontSize: '0.75rem', textDecoration: 'none', '&:hover': { color: 'text.primary' } }}>Terms</MuiLink>
+            <MuiLink component={Link} href="/refund-policy" sx={{ color: 'text.disabled', fontSize: '0.75rem', textDecoration: 'none', '&:hover': { color: '#00C8FF' } }}>Refund Policy</MuiLink>
           </Stack>
         </Stack>
       </Container>

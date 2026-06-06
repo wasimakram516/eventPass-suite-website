@@ -17,32 +17,25 @@ const theme = createTheme({
       paper: '#0a1020',
     },
     text: {
-      primary: '#FFFFFF',
-      secondary: '#A0AEBF',
+      primary: '#FFFFFF',        // headings, key labels
+      secondary: '#C8D4E0',      // body text, descriptions
+      disabled: 'rgba(255,255,255,0.45)', // captions, meta, timestamps
     },
   },
   typography: {
     fontFamily: '"Sora", "Plus Jakarta Sans", sans-serif',
-    h1: {
-      fontWeight: 800,
-      letterSpacing: '-0.02em',
-    },
-    h2: {
-      fontWeight: 700,
-      letterSpacing: '-0.01em',
-    },
-    h3: {
-      fontWeight: 700,
-    },
-    h4: {
-      fontWeight: 600,
-    },
-    h5: {
-      fontWeight: 600,
-    },
-    h6: {
-      fontWeight: 600,
-    },
+    h1: { fontWeight: 800, letterSpacing: '-0.02em', color: '#FFFFFF' },
+    h2: { fontWeight: 700, letterSpacing: '-0.01em', color: '#FFFFFF' },
+    h3: { fontWeight: 700, color: '#FFFFFF' },
+    h4: { fontWeight: 600, color: '#FFFFFF' },
+    h5: { fontWeight: 600, color: '#FFFFFF' },
+    h6: { fontWeight: 600, color: '#FFFFFF' },
+    body1: { color: '#C8D4E0' },
+    body2: { color: '#C8D4E0' },
+    subtitle1: { color: '#C8D4E0' },
+    subtitle2: { color: 'rgba(255,255,255,0.6)' },
+    caption: { color: 'rgba(255,255,255,0.45)' },
+    overline: { color: '#00C8FF', letterSpacing: '0.12em' },
   },
   shape: {
     borderRadius: 12,
@@ -89,9 +82,53 @@ const theme = createTheme({
         },
       },
     },
+    MuiLink: {
+      styleOverrides: {
+        root: {
+          color: '#C8D4E0',
+          textDecorationColor: 'rgba(200,212,224,0.3)',
+          '&:hover': { color: '#FFFFFF' },
+        },
+      },
+    },
+    MuiTypography: {
+      styleOverrides: {
+        body1: { color: '#C8D4E0' },
+        body2: { color: '#C8D4E0' },
+        subtitle1: { color: '#C8D4E0' },
+        subtitle2: { color: 'rgba(255,255,255,0.6)' },
+        caption: { color: 'rgba(255,255,255,0.45)' },
+        overline: { color: '#00C8FF' },
+      },
+    },
     MuiContainer: {
       defaultProps: {
         maxWidth: 'xl',
+      },
+    },
+    MuiDivider: {
+      styleOverrides: {
+        root: { borderColor: 'rgba(255,255,255,0.07)' },
+      },
+    },
+    MuiChip: {
+      styleOverrides: {
+        root: { fontWeight: 600 },
+      },
+    },
+    MuiInputBase: {
+      styleOverrides: {
+        root: { color: '#C8D4E0' },
+      },
+    },
+    MuiFormHelperText: {
+      styleOverrides: {
+        root: { color: 'rgba(255,255,255,0.45)' },
+      },
+    },
+    MuiInputLabel: {
+      styleOverrides: {
+        root: { color: 'rgba(255,255,255,0.6)' },
       },
     },
   },
