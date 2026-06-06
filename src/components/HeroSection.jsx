@@ -165,10 +165,11 @@ export default function HeroSection() {
               By WhiteWall Digital Solutions
             </Typography>
 
-            <Box>
+            <Box component="h1" sx={{ m: 0, p: 0 }}>
               <Typography
-                component="h1"
+                component="span"
                 sx={{
+                  display: 'block',
                   fontSize: { xs: '1.9rem', sm: '2.6rem', md: '3.2rem', lg: '3.7rem' },
                   fontWeight: 800,
                   lineHeight: 1.1,
@@ -182,8 +183,9 @@ export default function HeroSection() {
                 The ALL-IN-ONE Event
               </Typography>
               <Typography
-                component="h1"
+                component="span"
                 sx={{
+                  display: 'block',
                   fontSize: { xs: '1.9rem', sm: '2.6rem', md: '3.2rem', lg: '3.7rem' },
                   fontWeight: 800,
                   lineHeight: 1.1,
