@@ -20,33 +20,42 @@ import { MotionBox, fadeInUp, staggerContainer } from '@/components/Animations';
 
 const sections = [
   {
-    title: 'EventPass as an Intermediary',
-    content: `EventPass is a technology platform that enables event organisers to sell tickets and manage registrations digitally. EventPass, operated by WhiteWall Digital Solutions & Trading LLC, acts solely as an intermediary facilitating the transaction between the ticket purchaser and the event organiser.\n\nWhiteWall does not organise, host, or control any event listed on the platform. Accordingly, WhiteWall does not determine refund eligibility, approve or process refunds, or bear any financial liability arising from event cancellations, postponements, or attendee dissatisfaction.`,
+    title: 'Who We Are',
+    content: `EventPass is a digital event management and ticketing platform operated by WhiteWall Digital Solutions & Trading LLC ("WhiteWall", "we", "us"), based in Muscat, Oman. EventPass acts solely as an intermediary technology platform enabling event organisers to sell tickets and manage attendance digitally. We are not the organiser of any event listed on the platform unless explicitly stated.`,
   },
   {
-    title: 'Organiser Refund Policy Governs',
-    content: `All refund and cancellation rights for event tickets purchased through EventPass are determined exclusively by the event organiser's own refund policy. Before completing a ticket purchase, we strongly encourage you to review the refund policy of the organiser, which is typically available on the event registration page.\n\nRefund entitlements, timelines, processing methods, and any applicable deductions are entirely at the discretion of the event organiser, within the bounds of applicable Omani law.`,
+    title: 'What Data We Collect',
+    content: `When you register for or purchase a ticket to an event through EventPass, we collect the personal information you provide, which may include your name, email address, phone number, and any additional fields requested by the event organiser as part of their registration form.`,
   },
   {
-    title: 'How to Request a Refund',
-    content: `To request a refund for a ticket purchased through EventPass:\n\n• Contact the event organiser directly using the contact details provided on the event page or your registration confirmation.\n\n• Quote your booking reference number and the reason for your refund request.\n\n• Allow the organiser's stated processing timeline for a response.\n\nWhiteWall is not able to intervene in, expedite, or adjudicate refund disputes between attendees and event organisers. Any such disputes must be resolved directly with the organiser.`,
+    title: 'How We Use Your Data',
+    content: `WhiteWall uses your personal data strictly for the following operational and utilitarian purposes:\n\n• Issuing your ticket and managing your event registration.\n\n• Sending event reminders, entry confirmations, and attendance-related communications.\n\n• Internal research, analytics, and operational improvement of the EventPass platform.\n\n• Complying with applicable legal and regulatory obligations.\n\nWe do not sell, rent, or distribute your personal data to any third party for marketing or commercial purposes.`,
   },
   {
-    title: 'WhiteWall Platform Fees',
-    content: `Any platform or service fees charged by WhiteWall in connection with a ticket transaction are non-refundable unless otherwise stated at the point of purchase or required by applicable law.`,
+    title: 'Organiser Data Practices',
+    content: `EventPass provides your registration data to the event organiser for the purpose of managing the event you have registered for. Any use of your data by the organiser — including for marketing communications or other purposes — is governed exclusively by the organiser's own privacy policy. WhiteWall is not responsible for, and has no control over, how individual event organisers handle your personal information beyond the scope of the event itself.\n\nWhiteWall takes reasonable internal measures to obtain confirmation that event organisers listing events on the EventPass platform have the legal right to do so. This may include reviewing organiser credentials, business documentation, or event authorisation as part of our onboarding process. However, WhiteWall does not guarantee or warrant the legal standing of any organiser and attendees are encouraged to exercise their own due diligence when registering for events.\n\nWe encourage you to review the privacy policy of the relevant event organiser before completing your registration.`,
   },
   {
-    title: 'Event Cancellation or Postponement',
-    content: `In the event that an organiser cancels or postpones an event, refund rights are governed by the organiser's policy and any commitments made at the time of ticket purchase.\n\nWhiteWall will, where operationally possible, facilitate communications from the organiser to registered attendees but is not liable for any financial loss resulting from event cancellation or postponement.`,
-  },
-  {
-    title: 'Contact',
-    content: `For general enquiries about the EventPass platform, you may contact us at:`,
+    title: 'Your Rights Under Omani Law',
+    content: `In accordance with the Personal Data Protection Law of the Sultanate of Oman (Royal Decree No. 6/2022), you have the right to request access to the personal data we hold about you. To submit a data access request, please contact us in writing at:`,
     contactItems: [
-      { label: 'Email',   value: 'solutions@whitewall.om',           href: 'mailto:solutions@whitewall.om', icon: <EmailOutlinedIcon sx={{ fontSize: '1rem' }} /> },
-      { label: 'Address', value: 'TechnoPark, Ghala, Muscat, Oman',  href: null,                              icon: <LocationOnOutlinedIcon sx={{ fontSize: '1rem' }} /> },
+      { label: 'Address', value: 'TechnoPark, Ghala, Muscat, Oman', href: null, icon: <LocationOnOutlinedIcon sx={{ fontSize: '1rem' }} /> },
+      { label: 'Data Protection Officer', value: 'solutions@whitewall.om', href: 'mailto:solutions@whitewall.om', icon: <EmailOutlinedIcon sx={{ fontSize: '1rem' }} /> },
     ],
-    footer: 'For all ticket refund and cancellation matters, please contact your event organiser directly.',
+    footer: 'We will acknowledge your request and respond within 45 days of receipt.',
+  },
+  {
+    title: 'Data Deletion Requests',
+    content: `You, or an event organiser, may request deletion of personal data held on the EventPass platform. However, please note the following important limitation:\n\nYour personal data cannot be deleted while it remains operationally required for an event — that is, while the event is active and you are booked to attend. This is necessary for operational integrity (entry management, verification) and to comply with our legal obligations as a registration / ticketing intermediary.\n\nOutside of this limitation, your personal data or an organiser's data on the platform will be deleted upon request, within 30 days of receipt of the request, provided there is no legal obligation requiring us to retain it. Examples of such obligations include:\n\n• Statutory record-keeping requirements under Omani tax, accounting, or commercial law.\n\n• Data subject to an ongoing legal dispute, audit, or regulatory investigation.\n\n• Data requested or required to be retained by a court order, law enforcement, or regulatory authority.\n\nWhere a legal retention obligation applies, we will inform you of the basis and the expected retention period.`,
+  },
+  {
+    title: 'Data Security',
+    content: `WhiteWall takes reasonable technical and organisational measures to protect your personal data against unauthorised access, loss, or misuse. Data is stored on secure, access-controlled infrastructure.`,
+  },
+  {
+    title: 'Policy Updates',
+    content: `We may update this Privacy Policy from time to time. The effective date at the top of this document will reflect any changes. Continued use of the EventPass platform following an update constitutes acceptance of the revised policy.`,
+    footer: 'This policy applies to the EventPass platform operated by WhiteWall Digital Solutions & Trading LLC and does not govern the practices of individual event organisers. For event-specific data queries, please contact the organiser directly.',
   },
 ];
 
@@ -75,7 +84,7 @@ function linkifyWhiteWall(text) {
   }, []);
 }
 
-export default function RefundPolicyPage() {
+export default function PrivacyPolicyPage() {
   const [activeSection, setActiveSection] = useState(0);
   const sectionRefs = useRef([]);
 
@@ -112,7 +121,7 @@ export default function RefundPolicyPage() {
           <Container maxWidth="xl" sx={{ px: { xs: 3, sm: 5, md: 8, lg: 10 } }}>
             <Button
               component={Link}
-              href="/pricing"
+              href="/"
               startIcon={<ArrowBackIcon />}
               sx={{
                 color: 'rgba(255,255,255,0.4)',
@@ -124,7 +133,7 @@ export default function RefundPolicyPage() {
                 '&:hover': { color: '#00C8FF', bgcolor: 'transparent' },
               }}
             >
-              Back to Pricing
+              Back to Home
             </Button>
 
             <MotionBox
@@ -152,7 +161,7 @@ export default function RefundPolicyPage() {
                     maxWidth: 800,
                   }}
                 >
-                  Refund Policy
+                  Privacy Policy
                 </Typography>
               </MotionBox>
 
@@ -354,7 +363,7 @@ export default function RefundPolicyPage() {
                     Questions about this policy?
                   </Typography>
                   <Typography sx={{ color: 'rgba(255,255,255,0.4)', fontSize: '0.88rem' }}>
-                    Our support team is here to help.
+                    Our team is here to help.
                   </Typography>
                 </Box>
                 <Button

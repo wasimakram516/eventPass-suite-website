@@ -1,12 +1,12 @@
 export const metadata = {
   title: 'Refund Policy',
   description:
-    'EventPass refund and cancellation policy by WhiteWall Digital Solutions. Understand eligible refunds, processing timelines, non-refundable circumstances, and how to request a refund.',
+    'EventPass refund policy by WhiteWall Digital Solutions & Trading LLC. EventPass acts solely as an intermediary — refund and cancellation rights are governed by the event organiser.',
   alternates: { canonical: '/refund-policy' },
   openGraph: {
     title: 'Refund Policy | EventPass',
     description:
-      'Full refund and cancellation terms for EventPass events and hardware rentals — by WhiteWall Digital Solutions.',
+      'How refunds work on EventPass — by WhiteWall Digital Solutions & Trading LLC.',
     url: '/refund-policy',
   },
 };

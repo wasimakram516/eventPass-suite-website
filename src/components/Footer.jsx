@@ -319,7 +319,7 @@ export default function Footer() {
             © {new Date().getFullYear()} WhiteWall Digital Solutions.
           </Typography>
           <Stack direction="row" spacing={3}>
-            <MuiLink href="#" sx={{ color: 'text.disabled', fontSize: '0.75rem', textDecoration: 'none', '&:hover': { color: 'text.primary' } }}>Privacy Policy</MuiLink>
+            <MuiLink component={Link} href="/privacy-policy" sx={{ color: 'text.disabled', fontSize: '0.75rem', textDecoration: 'none', '&:hover': { color: '#00C8FF' } }}>Privacy Policy</MuiLink>
             <MuiLink href="#" sx={{ color: 'text.disabled', fontSize: '0.75rem', textDecoration: 'none', '&:hover': { color: 'text.primary' } }}>Terms</MuiLink>
             <MuiLink component={Link} href="/refund-policy" sx={{ color: 'text.disabled', fontSize: '0.75rem', textDecoration: 'none', '&:hover': { color: '#00C8FF' } }}>Refund Policy</MuiLink>
           </Stack>
