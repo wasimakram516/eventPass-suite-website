@@ -17,7 +17,9 @@ export default function ClientLayout({ children }) {
   return (
     <GlobalConfigProvider>
       <Loader isLoading={isPageLoading} />
-      {!isPageLoading && children}
+      {/* Always render children so the server HTML contains the page content and internal links for crawlers;
+          the Loader is a fixed full-screen overlay that covers the page while it initialises. */}
+      {children}
     </GlobalConfigProvider>
   );
 }
