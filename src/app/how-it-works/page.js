@@ -23,6 +23,7 @@ import StyleOutlinedIcon from '@mui/icons-material/StyleOutlined';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import RelatedLinks from '@/components/RelatedLinks';
 import PageHero from '@/components/PageHero';
 import { MotionBox, fadeInUp } from '@/components/Animations';
 
@@ -710,6 +711,7 @@ export default function HowItWorksPage() {
         </Box>
       </Container>
 
+      <RelatedLinks to={['features', 'modules', 'contact']} />
       <Footer />
     </Box>
   );

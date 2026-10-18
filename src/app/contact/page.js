@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { MotionBox, fadeInUp, staggerContainer } from '@/components/Animations';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import RelatedLinks from '@/components/RelatedLinks';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import MailOutlineIcon from '@mui/icons-material/MailOutlined';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutlined';
@@ -402,6 +403,7 @@ export default function ContactPage() {
         </Container>
       </Box>
 
+      <RelatedLinks to={['howItWorks', 'events']} />
       <Footer />
       <CustomAlert 
         open={alert.open} 

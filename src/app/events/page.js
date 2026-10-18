@@ -4,6 +4,7 @@ import { Box, Container, Typography, Chip } from '@mui/material';
 import { motion, AnimatePresence } from 'framer-motion';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import RelatedLinks from '@/components/RelatedLinks';
 import PageHero from '@/components/PageHero';
 
 
@@ -653,6 +654,7 @@ export default function EventsPage() {
           </Container>
         </Box>
 
+        <RelatedLinks to={['features', 'modules', 'contact']} />
         <Footer />
       </Box>
     </>
