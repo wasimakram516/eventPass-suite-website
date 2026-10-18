@@ -3,6 +3,7 @@ import React from 'react';
 import { Box, Container, Typography, Grid } from '@mui/material';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import RelatedLinks from '@/components/RelatedLinks';
 import PageHero from '@/components/PageHero';
 import ModuleCard from '@/components/ModuleCard';
 import { MotionBox, fadeInUp, staggerContainer } from '@/components/Animations';
@@ -184,6 +185,7 @@ export default function ModulesPage() {
         </MotionBox>
       </Container>
 
+      <RelatedLinks to={['features', 'howItWorks', 'events', 'contact']} />
       <Footer />
     </Box>
   );

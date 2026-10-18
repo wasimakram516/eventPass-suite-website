@@ -16,6 +16,7 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import RelatedLinks from '@/components/RelatedLinks';
 import { MotionBox, fadeInUp, staggerContainer } from '@/components/Animations';
 
 const sections = [
@@ -391,6 +392,7 @@ export default function PrivacyPolicyPage() {
           </Box>
         </Container>
 
+        <RelatedLinks to={['refund', 'contact']} />
         <Footer />
       </Box>
     </Box>

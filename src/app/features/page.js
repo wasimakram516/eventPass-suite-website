@@ -4,6 +4,7 @@ import { Box, Typography, Container, Grid } from '@mui/material';
 import { motion } from 'framer-motion';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import RelatedLinks from '@/components/RelatedLinks';
 import PageHero from '@/components/PageHero';
 import { MotionBox, fadeInUp, staggerContainer } from '@/components/Animations';
 
@@ -327,6 +328,7 @@ export default function FeaturesPage() {
         </MotionBox>
       </Container>
 
+      <RelatedLinks to={['modules', 'howItWorks', 'contact']} />
       <Footer />
     </Box>
   );
