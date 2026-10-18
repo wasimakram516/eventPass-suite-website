@@ -238,7 +238,7 @@ const PlanCard = ({ plan }) => (
       <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <Typography
           sx={{
-            fontFamily: "'Syne', sans-serif",
+            fontFamily: "var(--font-syne), sans-serif",
             fontWeight: 800,
             fontSize: '0.78rem',
             color: plan.color,
@@ -270,7 +270,7 @@ const PlanCard = ({ plan }) => (
         {plan.price === 'Custom' ? (
           <Typography
             sx={{
-              fontFamily: "'Syne', sans-serif",
+              fontFamily: "var(--font-syne), sans-serif",
               fontWeight: 800,
               fontSize: '2.8rem',
               color: '#fff',
@@ -284,7 +284,7 @@ const PlanCard = ({ plan }) => (
           <Stack direction="row" spacing={0} sx={{ alignItems: 'flex-start', mb: 0.5 }}>
             <Typography
               sx={{
-                fontFamily: "'Syne', sans-serif",
+                fontFamily: "var(--font-syne), sans-serif",
                 fontWeight: 600,
                 fontSize: '1.1rem',
                 color: 'text.disabled',
@@ -296,7 +296,7 @@ const PlanCard = ({ plan }) => (
             </Typography>
             <Typography
               sx={{
-                fontFamily: "'Syne', sans-serif",
+                fontFamily: "var(--font-syne), sans-serif",
                 fontWeight: 800,
                 fontSize: '3.8rem',
                 color: '#fff',
@@ -457,7 +457,7 @@ const ProductCard = ({ product, onViewDetails }) => {
       <Box sx={{ p: 2.5, pt: 1.5, display: 'flex', flexDirection: 'column', gap: 1, flex: 1 }}>
         <Typography
           sx={{
-            fontFamily: "'Syne', sans-serif",
+            fontFamily: "var(--font-syne), sans-serif",
             fontWeight: 700,
             fontSize: '1.02rem',
             color: 'text.primary',
@@ -646,7 +646,7 @@ const ProductDetailModal = ({ product, onClose }) => {
 
             <Typography
               sx={{
-                fontFamily: "'Syne', sans-serif",
+                fontFamily: "var(--font-syne), sans-serif",
                 fontWeight: 800,
                 fontSize: { xs: '1.8rem', md: '2.4rem' },
                 color: '#fff',
@@ -696,7 +696,7 @@ const ProductDetailModal = ({ product, onClose }) => {
                 {/* Text */}
                 <Box>
                   <Typography sx={{
-                    fontFamily: "'Syne', sans-serif",
+                    fontFamily: "var(--font-syne), sans-serif",
                     fontWeight: 700,
                     fontSize: '0.88rem',
                     color: '#fff',
@@ -853,7 +853,7 @@ export default function PricingPage() {
                 <Typography
                   variant="h1"
                   sx={{
-                    fontFamily: "'Syne', sans-serif",
+                    fontFamily: "var(--font-syne), sans-serif",
                     fontWeight: 800,
                     fontSize: { xs: '2.2rem', sm: '3rem', md: '4rem' },
                     lineHeight: 1.1,
@@ -893,7 +893,7 @@ export default function PricingPage() {
               <MotionBox variants={fadeInUp} sx={{ mb: 8, textAlign: 'center' }}>
                 <Typography
                   sx={{
-                    fontFamily: "'Syne', sans-serif",
+                    fontFamily: "var(--font-syne), sans-serif",
                     fontWeight: 800,
                     fontSize: { xs: '1.6rem', md: '2.2rem' },
                     mb: 1,
@@ -934,7 +934,7 @@ export default function PricingPage() {
                 <MotionBox variants={fadeInUp} sx={{ mb: 8, textAlign: 'center' }}>
                   <Typography
                     sx={{
-                      fontFamily: "'Syne', sans-serif",
+                      fontFamily: "var(--font-syne), sans-serif",
                       fontWeight: 800,
                       fontSize: { xs: '1.6rem', md: '2.2rem' },
                       mb: 1,
@@ -978,7 +978,7 @@ export default function PricingPage() {
               <MotionBox variants={fadeInUp}>
                 <Typography
                   sx={{
-                    fontFamily: "'Syne', sans-serif",
+                    fontFamily: "var(--font-syne), sans-serif",
                     fontWeight: 800,
                     fontSize: { xs: '1.6rem', md: '2.4rem' },
                     mb: 2,

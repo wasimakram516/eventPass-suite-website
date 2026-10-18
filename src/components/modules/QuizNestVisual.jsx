@@ -18,11 +18,11 @@ export default function QuizNestVisual({ color }) {
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <Typography sx={{ color: 'rgba(255,255,255,0.4)', fontSize: '0.5rem', fontWeight: 600, letterSpacing: '0.06em', textTransform: 'uppercase' }}>Question 4 of 10</Typography>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5, bgcolor: `${color}15`, px: 1, py: 0.35, borderRadius: '12px' }}>
-          <Typography sx={{ color, fontSize: '0.6rem', fontWeight: 700, fontFamily: "'Syne', sans-serif" }}>⏱ 00:12</Typography>
+          <Typography sx={{ color, fontSize: '0.6rem', fontWeight: 700, fontFamily: "var(--font-syne), sans-serif" }}>⏱ 00:12</Typography>
         </Box>
       </Box>
 
-      <Typography sx={{ color: '#fff', fontSize: '0.7rem', fontWeight: 700, textAlign: 'center', my: 0.5, fontFamily: "'Syne', sans-serif" }}>
+      <Typography sx={{ color: '#fff', fontSize: '0.7rem', fontWeight: 700, textAlign: 'center', my: 0.5, fontFamily: "var(--font-syne), sans-serif" }}>
         What is the capital of the Sultanate of Oman?
       </Typography>
 

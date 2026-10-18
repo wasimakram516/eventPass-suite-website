@@ -45,7 +45,7 @@ export default function TapMatchVisual({ color }) {
           >
             {(i === 2 || i === 7)
               ? <Box style={{ transform: 'rotateY(180deg)' }}>💎</Box>
-              : <Typography sx={{ fontFamily: "'Syne', sans-serif", fontSize: '0.68rem', fontWeight: 800, color: 'rgba(0,220,160,.2)' }}>?</Typography>}
+              : <Typography sx={{ fontFamily: "var(--font-syne), sans-serif", fontSize: '0.68rem', fontWeight: 800, color: 'rgba(0,220,160,.2)' }}>?</Typography>}
           </motion.div>
         ))}
       </Box>

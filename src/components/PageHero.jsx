@@ -70,7 +70,7 @@ export default function PageHero({ title, subtitle, label }) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1 }}
             sx={{
-              fontFamily: "'Syne', sans-serif",
+              fontFamily: "var(--font-syne), sans-serif",
               fontSize: { xs: '1.75rem', sm: '2.5rem', md: '4rem' },
               fontWeight: 800,
               color: '#fff',

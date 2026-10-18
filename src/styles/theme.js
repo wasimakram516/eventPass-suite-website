@@ -23,7 +23,7 @@ const theme = createTheme({
     },
   },
   typography: {
-    fontFamily: '"Sora", "Plus Jakarta Sans", sans-serif',
+    fontFamily: 'var(--font-sora), var(--font-jakarta), sans-serif',
     h1: { fontWeight: 800, letterSpacing: '-0.02em', color: '#FFFFFF' },
     h2: { fontWeight: 700, letterSpacing: '-0.01em', color: '#FFFFFF' },
     h3: { fontWeight: 700, color: '#FFFFFF' },

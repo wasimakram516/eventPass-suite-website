@@ -211,7 +211,7 @@ const MetricCard = ({ metric, accent }) => (
   >
     <Typography
       sx={{
-        fontFamily: "'Syne', sans-serif",
+        fontFamily: "var(--font-syne), sans-serif",
         fontSize: { xs: '1.2rem', sm: '1.35rem', md: '1.5rem' },
         fontWeight: 800,
         color: accent,
@@ -369,7 +369,7 @@ export default function EventsPage() {
                   <Typography
                     component="h2"
                     sx={{
-                      fontFamily: "'Syne', sans-serif",
+                      fontFamily: "var(--font-syne), sans-serif",
                       fontWeight: 800,
                       fontSize: { xs: '1.65rem', sm: '2rem', md: '2.3rem', lg: '1.95rem', xl: '2.5rem' },
                       lineHeight: 1.1,
@@ -566,7 +566,7 @@ export default function EventsPage() {
               <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 4 }}>
                 <Typography
                   sx={{
-                    fontFamily: "'Syne', sans-serif",
+                    fontFamily: "var(--font-syne), sans-serif",
                     fontWeight: 800,
                     fontSize: { xs: '1.1rem', md: '1.3rem' },
                     color: 'rgba(255,255,255,0.9)',
@@ -636,7 +636,7 @@ export default function EventsPage() {
                     />
                     <Box sx={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 60%)' }} />
                     <Box sx={{ position: 'absolute', bottom: { xs: 8, md: 12 }, left: { xs: 8, md: 12 }, right: { xs: 8, md: 12 }, textAlign: 'left' }}>
-                      <Typography sx={{ fontFamily: "'Syne', sans-serif", fontWeight: 800, fontSize: { xs: '0.65rem', md: '0.75rem' }, color: '#fff', lineHeight: 1.3 }}>
+                      <Typography sx={{ fontFamily: "var(--font-syne), sans-serif", fontWeight: 800, fontSize: { xs: '0.65rem', md: '0.75rem' }, color: '#fff', lineHeight: 1.3 }}>
                         {e.title.split(' ').slice(0, 3).join(' ')}
                       </Typography>
                       <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5, mt: 0.5 }}>

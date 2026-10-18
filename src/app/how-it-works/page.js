@@ -151,7 +151,7 @@ const OperationsVisual = ({ color }) => {
     <Box sx={{ width: '100%', height: '100%', p: { xs: 2, sm: 2.5, md: 3 }, display: 'flex', flexDirection: 'column', gap: { xs: 1.5, md: 2 }, boxSizing: 'border-box' }}>
       {/* Header */}
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexShrink: 0 }}>
-        <Typography sx={{ fontSize: { xs: '0.65rem', md: '0.78rem' }, fontWeight: 800, color, fontFamily: "'Syne', sans-serif", letterSpacing: '0.06em' }}>
+        <Typography sx={{ fontSize: { xs: '0.65rem', md: '0.78rem' }, fontWeight: 800, color, fontFamily: "var(--font-syne), sans-serif", letterSpacing: '0.06em' }}>
           LIVE OPERATIONS
         </Typography>
         <Box sx={{ px: 1, py: 0.3, borderRadius: '20px', bgcolor: 'rgba(0,220,160,0.1)', display: 'flex', alignItems: 'center', gap: 0.5 }}>
@@ -407,7 +407,7 @@ const MeasureVisual = ({ color }) => {
           <MailOutlinedIcon fontSize="inherit" />
         </Box>
         <Box sx={{ minWidth: 0 }}>
-          <Typography noWrap sx={{ fontSize: { xs: '0.58rem', md: '0.64rem' }, fontWeight: 800, color: '#ff7832', fontFamily: "'Syne', sans-serif" }}>
+          <Typography noWrap sx={{ fontSize: { xs: '0.58rem', md: '0.64rem' }, fontWeight: 800, color: '#ff7832', fontFamily: "var(--font-syne), sans-serif" }}>
             Post-Event: SurveyGuru Active
           </Typography>
           <Typography noWrap sx={{ fontSize: { xs: '0.48rem', md: '0.54rem' }, color: 'rgba(255,255,255,0.55)', mt: 0.15 }}>
@@ -481,7 +481,7 @@ const StepRow = ({ step, index, isMobile }) => {
           zIndex: 2,
         }}
       >
-        <Typography sx={{ fontFamily: "'Syne', sans-serif", fontWeight: 800, color: step.color, fontSize: isMobile ? '0.75rem' : '1rem', lineHeight: 1 }}>
+        <Typography sx={{ fontFamily: "var(--font-syne), sans-serif", fontWeight: 800, color: step.color, fontSize: isMobile ? '0.75rem' : '1rem', lineHeight: 1 }}>
           0{index + 1}
         </Typography>
       </Box>
@@ -502,7 +502,7 @@ const StepRow = ({ step, index, isMobile }) => {
             </Typography>
             <Typography
               variant="h2"
-              sx={{ fontFamily: "'Syne', sans-serif", fontWeight: 800, mb: 1.5, fontSize: { xs: '1.75rem', sm: '2.2rem' }, color: '#fff', lineHeight: 1.1 }}
+              sx={{ fontFamily: "var(--font-syne), sans-serif", fontWeight: 800, mb: 1.5, fontSize: { xs: '1.75rem', sm: '2.2rem' }, color: '#fff', lineHeight: 1.1 }}
             >
               {step.name}
             </Typography>
@@ -568,7 +568,7 @@ const StepRow = ({ step, index, isMobile }) => {
               </Typography>
               <Typography
                 variant="h2"
-                sx={{ fontFamily: "'Syne', sans-serif", fontWeight: 800, mb: 2, fontSize: { md: '2.8rem', lg: '3.5rem' }, color: '#fff', lineHeight: 1.1 }}
+                sx={{ fontFamily: "var(--font-syne), sans-serif", fontWeight: 800, mb: 2, fontSize: { md: '2.8rem', lg: '3.5rem' }, color: '#fff', lineHeight: 1.1 }}
               >
                 {step.name}
               </Typography>
