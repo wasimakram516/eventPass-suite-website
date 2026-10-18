@@ -181,30 +181,35 @@ export default function ContactPage() {
             {/* Header Section */}
             <Box sx={{ textAlign: 'center', mb: { xs: 8, md: 9 } }}>
               <MotionBox variants={fadeInUp}>
-                <Typography
-                  sx={{
-                    fontSize: { xs: '2.25rem', md: '4rem' },
-                    fontWeight: 900,
-                    lineHeight: 1,
-                    mb: 1.5,
-                    color: '#fff'
-                  }}
-                >
-                  What are you waiting for?
-                </Typography>
-                <Typography
-                  sx={{
-                    fontSize: { xs: '2.25rem', md: '4rem' },
-                    fontWeight: 900,
-                    lineHeight: 1,
-                    background: 'linear-gradient(90deg, #00C8FF 0%, #9061FF 100%)',
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent',
-                    mb: 2.5
-                  }}
-                >
-                  Enter the Next Generation.
-                </Typography>
+                <Box component="h1" sx={{ m: 0, mb: 2.5 }}>
+                  <Typography
+                    component="span"
+                    sx={{
+                      display: 'block',
+                      fontSize: { xs: '2.25rem', md: '4rem' },
+                      fontWeight: 900,
+                      lineHeight: 1,
+                      mb: 1.5,
+                      color: '#fff'
+                    }}
+                  >
+                    What are you waiting for?
+                  </Typography>
+                  <Typography
+                    component="span"
+                    sx={{
+                      display: 'block',
+                      fontSize: { xs: '2.25rem', md: '4rem' },
+                      fontWeight: 900,
+                      lineHeight: 1,
+                      background: 'linear-gradient(90deg, #00C8FF 0%, #9061FF 100%)',
+                      WebkitBackgroundClip: 'text',
+                      WebkitTextFillColor: 'transparent',
+                    }}
+                  >
+                    Enter the Next Generation.
+                  </Typography>
+                </Box>
                 <Typography
                   sx={{
                     fontSize: { xs: '0.95rem', md: '1.05rem' },
