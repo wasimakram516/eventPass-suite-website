@@ -15,6 +15,8 @@ const nextConfig = {
         destination: '/',
         permanent: true,
       })),
+      // Pricing page is hidden for now; temporary (307) so it can be restored without cached redirects.
+      { source: '/pricing', destination: '/', permanent: false },
       { source: '/sme-agenda', destination: '/events', permanent: true },
       { source: '/ar/event/:rest*', destination: '/events', permanent: true },
       { source: '/ar/:rest*', destination: '/', permanent: true },

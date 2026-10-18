@@ -112,7 +112,7 @@ export default function RefundPolicyPage() {
           <Container maxWidth="xl" sx={{ px: { xs: 3, sm: 5, md: 8, lg: 10 } }}>
             <Button
               component={Link}
-              href="/pricing"
+              href="/"
               startIcon={<ArrowBackIcon />}
               sx={{
                 color: 'rgba(255,255,255,0.4)',
@@ -124,7 +124,7 @@ export default function RefundPolicyPage() {
                 '&:hover': { color: '#00C8FF', bgcolor: 'transparent' },
               }}
             >
-              Back to Pricing
+              Back to Home
             </Button>
 
             <MotionBox
