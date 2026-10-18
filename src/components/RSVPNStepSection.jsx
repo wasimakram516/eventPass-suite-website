@@ -159,7 +159,7 @@ export default function RSVPNStepSection() {
                   </Box>
 
                   {/* Content */}
-                  <Typography variant="h5" sx={{ fontWeight: 700, mb: 2 }}>
+                  <Typography variant="h5" component="h3" sx={{ fontWeight: 700, mb: 2 }}>
                     {item.title}
                   </Typography>
                   
