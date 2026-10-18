@@ -16,13 +16,13 @@ export default function SurveyGuruVisual({ color }) {
       overflow: 'hidden'
     }}>
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <Typography sx={{ color, fontSize: '0.55rem', fontWeight: 700, fontFamily: "'Syne', sans-serif" }}>📧 Post-Event Survey</Typography>
+        <Typography sx={{ color, fontSize: '0.55rem', fontWeight: 700, fontFamily: "var(--font-syne), sans-serif" }}>📧 Post-Event Survey</Typography>
         <Box sx={{ bgcolor: `${color}15`, px: 0.9, py: 0.3, borderRadius: '10px' }}>
           <Typography sx={{ color, fontSize: '0.45rem', fontWeight: 600 }}>2,912 sent</Typography>
         </Box>
       </Box>
 
-      <Typography sx={{ color: '#fff', fontSize: '0.68rem', fontWeight: 700, textAlign: 'center', fontFamily: "'Syne', sans-serif" }}>
+      <Typography sx={{ color: '#fff', fontSize: '0.68rem', fontWeight: 700, textAlign: 'center', fontFamily: "var(--font-syne), sans-serif" }}>
         How would you rate your experience?
       </Typography>
 

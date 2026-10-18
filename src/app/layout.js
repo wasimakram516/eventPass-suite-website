@@ -2,8 +2,14 @@ import ThemeRegistry from '@/styles/themeRegistry.js';
 import { Suspense } from 'react';
 import ClientLayout from '@/components/ClientLayout';
 import JsonLd from '@/components/JsonLd';
+import { Sora, Plus_Jakarta_Sans, Syne } from 'next/font/google';
 
 const BASE_URL = 'https://eventpass.whitewall.solutions';
+
+// Self-hosted via next/font so fonts never block rendering (replaces the render-blocking Google Fonts <link>).
+const sora = Sora({ subsets: ['latin'], display: 'swap', variable: '--font-sora' });
+const jakarta = Plus_Jakarta_Sans({ subsets: ['latin'], display: 'swap', variable: '--font-jakarta' });
+const syne = Syne({ subsets: ['latin'], display: 'swap', variable: '--font-syne' });
 
 export const metadata = {
   metadataBase: new URL(BASE_URL),
@@ -74,15 +80,9 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${sora.variable} ${jakarta.variable} ${syne.variable}`}>
       <head>
         <meta name="emotion-insertion-point" content="" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap"
-          rel="stylesheet"
-        />
       </head>
       <body suppressHydrationWarning>
         <JsonLd />

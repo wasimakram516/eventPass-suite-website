@@ -161,7 +161,7 @@ export default function ModulesPage() {
           {moduleCategories.map((category) => (
             <Box key={category.name}>
               <Box sx={{ mb: { xs: 4, md: 6 } }}>
-                <Typography variant="h3" sx={{ fontFamily: "'Syne', sans-serif", fontWeight: 800, mb: 1.5, fontSize: { xs: '1.75rem', sm: '2rem', md: '2.5rem' }, color: category.color }}>
+                <Typography variant="h3" sx={{ fontFamily: "var(--font-syne), sans-serif", fontWeight: 800, mb: 1.5, fontSize: { xs: '1.75rem', sm: '2rem', md: '2.5rem' }, color: category.color }}>
                   {category.name}
                 </Typography>
                 <Typography sx={{ color: 'rgba(255,255,255,0.5)', maxWidth: 650, fontSize: { xs: '0.95rem', md: '1.1rem' }, lineHeight: 1.6 }}>

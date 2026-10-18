@@ -154,7 +154,7 @@ export default function PrivacyPolicyPage() {
                 <Typography
                   variant="h1"
                   sx={{
-                    fontFamily: "'Syne', sans-serif",
+                    fontFamily: "var(--font-syne), sans-serif",
                     fontWeight: 800,
                     fontSize: { xs: '2.4rem', sm: '3.5rem', md: '5rem' },
                     lineHeight: 1.05,
@@ -259,7 +259,7 @@ export default function PrivacyPolicyPage() {
                   <Stack direction="row" spacing={2} sx={{ alignItems: 'baseline', mb: 3 }}>
                     <Typography
                       sx={{
-                        fontFamily: "'Syne', sans-serif",
+                        fontFamily: "var(--font-syne), sans-serif",
                         fontSize: '0.72rem',
                         fontWeight: 800,
                         color: '#00C8FF',
@@ -273,7 +273,7 @@ export default function PrivacyPolicyPage() {
                     </Typography>
                     <Typography
                       sx={{
-                        fontFamily: "'Syne', sans-serif",
+                        fontFamily: "var(--font-syne), sans-serif",
                         fontWeight: 800,
                         fontSize: { xs: '1.3rem', md: '1.7rem' },
                         color: '#fff',
@@ -360,7 +360,7 @@ export default function PrivacyPolicyPage() {
                 }}
               >
                 <Box>
-                  <Typography sx={{ fontFamily: "'Syne', sans-serif", fontWeight: 700, fontSize: '1.1rem', color: '#fff', mb: 0.5 }}>
+                  <Typography sx={{ fontFamily: "var(--font-syne), sans-serif", fontWeight: 700, fontSize: '1.1rem', color: '#fff', mb: 0.5 }}>
                     Questions about this policy?
                   </Typography>
                   <Typography sx={{ color: 'rgba(255,255,255,0.4)', fontSize: '0.88rem' }}>

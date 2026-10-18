@@ -4,7 +4,18 @@ import { Box, Typography, Button, Container } from '@mui/material';
 import Image from 'next/image';
 import env from '@/config/env';
 import { useGlobalConfig } from '@/components/GlobalConfigProvider';
-import { AnimatedNumber, MotionBox, fadeInUp, staggerContainer } from './Animations';
+import { AnimatedNumber, MotionBox } from './Animations';
+
+// Hero text must be visible in the server HTML: animating from opacity 0 delays the LCP element until JS hydrates.
+// So the hero only slides up (never fades in), keeping the headline painted from the first frame.
+const heroStagger = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.08, delayChildren: 0.05 } },
+};
+const heroSlideUp = {
+  hidden: { y: 20 },
+  visible: { y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } },
+};
 
 const DESIGN_W = 700;
 const DESIGN_H = 580;
@@ -129,7 +140,7 @@ export default function HeroSection() {
         }}
       >
         <MotionBox
-          variants={staggerContainer}
+          variants={heroStagger}
           initial="hidden"
           animate="visible"
           sx={{
@@ -141,7 +152,7 @@ export default function HeroSection() {
         >
           {/* ── Left / Top: text ── */}
           <MotionBox
-            variants={fadeInUp}
+            variants={heroSlideUp}
             sx={{
               flex: '0 0 auto',
               width: { xs: '100%', lg: '52%' },

@@ -45,7 +45,7 @@ export default function ModuleCard({ name, icon, description, features, color, c
         <Box sx={{ mb: 1.5 }}>
           <Typography
             sx={{
-              fontFamily: "'Syne', sans-serif",
+              fontFamily: "var(--font-syne), sans-serif",
               fontSize: '0.65rem',
               fontWeight: 700,
               color: color,
@@ -58,7 +58,7 @@ export default function ModuleCard({ name, icon, description, features, color, c
         </Box>
 
         <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 1.5 }}>
-          <Typography variant="h5" sx={{ fontFamily: "'Syne', sans-serif", fontWeight: 800, color: '#fff', fontSize: '1.25rem' }}>
+          <Typography variant="h5" sx={{ fontFamily: "var(--font-syne), sans-serif", fontWeight: 800, color: '#fff', fontSize: '1.25rem' }}>
             {name}
           </Typography>
         </Box>

@@ -23,7 +23,7 @@ export default function EventDuelVisual({ color }) {
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
         <Box sx={{ textAlign: 'center' }}>
           <Box sx={{ width: 44, height: 44, borderRadius: '50%', border: `2px solid ${color}`, bgcolor: `${color}08`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.2rem', lineHeight: 1, mb: 1 }}>👤</Box>
-          <Typography sx={{ color: '#fff', fontSize: '0.55rem', fontWeight: 700, fontFamily: "'Syne', sans-serif" }}>PLAYER 1</Typography>
+          <Typography sx={{ color: '#fff', fontSize: '0.55rem', fontWeight: 700, fontFamily: "var(--font-syne), sans-serif" }}>PLAYER 1</Typography>
           <Typography sx={{ color: color, fontSize: '1rem', fontWeight: 900 }}>2,450</Typography>
         </Box>
         
@@ -33,7 +33,7 @@ export default function EventDuelVisual({ color }) {
 
         <Box sx={{ textAlign: 'center' }}>
           <Box sx={{ width: 44, height: 44, borderRadius: '50%', border: '2px solid #ff7832', bgcolor: '#ff783210', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.2rem', lineHeight: 1, mb: 1 }}>👤</Box>
-          <Typography sx={{ color: '#fff', fontSize: '0.55rem', fontWeight: 700, fontFamily: "'Syne', sans-serif" }}>PLAYER 2</Typography>
+          <Typography sx={{ color: '#fff', fontSize: '0.55rem', fontWeight: 700, fontFamily: "var(--font-syne), sans-serif" }}>PLAYER 2</Typography>
           <Typography sx={{ color: '#ff7832', fontSize: '1rem', fontWeight: 900 }}>1,890</Typography>
         </Box>
       </Box>

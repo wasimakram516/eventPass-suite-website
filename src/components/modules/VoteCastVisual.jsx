@@ -19,7 +19,7 @@ export default function VoteCastVisual({ color }) {
       p: { xs: 2.25, md: 3 },
       justifyContent: 'center'
     }}>
-      <Typography sx={{ color: '#fff', fontSize: '0.65rem', fontWeight: 700, mb: 1, fontFamily: "'Syne', sans-serif" }}>
+      <Typography sx={{ color: '#fff', fontSize: '0.65rem', fontWeight: 700, mb: 1, fontFamily: "var(--font-syne), sans-serif" }}>
         Which topic interests you most?
       </Typography>
 

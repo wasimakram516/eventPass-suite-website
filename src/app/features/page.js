@@ -60,7 +60,7 @@ const FeatureCard = ({ icon, title, description, color, children }) => (
       }}>
         {icon}
       </Box>
-      <Typography variant="h5" sx={{ fontFamily: "'Syne', sans-serif", fontWeight: 800, color: '#fff', fontSize: '1.3rem', lineHeight: 1.2 }}>
+      <Typography variant="h5" sx={{ fontFamily: "var(--font-syne), sans-serif", fontWeight: 800, color: '#fff', fontSize: '1.3rem', lineHeight: 1.2 }}>
         {title}
       </Typography>
     </Box>
@@ -187,7 +187,7 @@ const BilingualVisual = ({ color }) => (
         animate={{ opacity: [1, 0.1, 1], scale: [1.1, 0.9, 1.1] }}
         transition={{ duration: 4, repeat: Infinity }}
       >
-        <Typography sx={{ color: color, fontSize: '2.5rem', fontWeight: 800, fontFamily: "'Syne', sans-serif" }}>عربي</Typography>
+        <Typography sx={{ color: color, fontSize: '2.5rem', fontWeight: 800, fontFamily: "var(--font-syne), sans-serif" }}>عربي</Typography>
       </motion.div>
     </Box>
   </Box>

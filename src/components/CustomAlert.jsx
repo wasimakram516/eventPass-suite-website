@@ -49,7 +49,7 @@ const CustomAlert = ({ open, handleClose, title, message, type = 'success' }) =>
             fontWeight: 800, 
             mb: 1.5, 
             color: '#fff',
-            fontFamily: 'Sora'
+            fontFamily: 'var(--font-sora)'
           }}
         >
           {title}
@@ -78,7 +78,7 @@ const CustomAlert = ({ open, handleClose, title, message, type = 'success' }) =>
             borderRadius: '100px',
             textTransform: 'none',
             fontSize: '1rem',
-            fontFamily: 'Plus Jakarta Sans',
+            fontFamily: 'var(--font-jakarta)',
             transition: 'all 0.3s ease',
             '&:hover': {
               bgcolor: '#fff',
