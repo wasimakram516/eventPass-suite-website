@@ -189,6 +189,9 @@ export default function Footer() {
                     sx={{
                       color: 'text.secondary',
                       textDecoration: 'none',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      minHeight: 24,
                       fontSize: { xs: '0.75rem', md: '0.9rem' },
                       fontWeight: 500,
                       transition: 'all 0.2s ease',
@@ -215,6 +218,7 @@ export default function Footer() {
                   <MuiLink
                     key={social.label}
                     href={social.href}
+                    aria-label={social.label}
                     target="_blank"
                     rel="noopener"
                     sx={{
