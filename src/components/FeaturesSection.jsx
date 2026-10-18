@@ -1,6 +1,7 @@
 'use client';
 import React from 'react';
 import { Box, Container, Typography } from '@mui/material';
+import Link from 'next/link';
 import RocketLaunchIcon from '@mui/icons-material/RocketLaunch';
 import InsightsIcon from '@mui/icons-material/Insights';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
@@ -25,6 +26,13 @@ const features = [
       "Real-time dashboards and post-event surveys turn crowd behaviour into actionable insights that prove your event's impact.",
     icon: <TrendingUpIcon sx={{ fontSize: 28 }} />,
   },
+];
+
+const exploreLinks = [
+  { label: 'Explore all features', href: '/features' },
+  { label: 'Browse every module', href: '/modules' },
+  { label: 'See how EventPass works', href: '/how-it-works' },
+  { label: 'Talk to the team', href: '/contact' },
 ];
 
 export default function FeaturesSection() {
@@ -177,6 +185,31 @@ export default function FeaturesSection() {
             </MotionBox>
           ))}
           </Box>
+
+          {/* Contextual internal links: give crawlers and visitors a direct path to the inner pages */}
+          <MotionBox
+            variants={fadeInUp}
+            component="nav"
+            aria-label="Explore EventPass"
+            sx={{ mt: { xs: 8, md: 10 }, display: 'flex', flexWrap: 'wrap', gap: { xs: 2, md: 4 } }}
+          >
+            {exploreLinks.map((link) => (
+              <Box
+                key={link.href}
+                component={Link}
+                href={link.href}
+                sx={{
+                  color: '#00C8FF',
+                  fontWeight: 700,
+                  fontSize: { xs: '0.9rem', md: '0.95rem' },
+                  textDecoration: 'none',
+                  '&:hover': { color: '#fff' },
+                }}
+              >
+                {link.label} →
+              </Box>
+            ))}
+          </MotionBox>
         </MotionBox>
       </Container>
     </Box>
