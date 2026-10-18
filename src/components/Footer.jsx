@@ -54,7 +54,6 @@ const quickLinks = [
   { name: 'Modules', href: '/modules' },
   { name: 'How It Works', href: '/how-it-works' },
   { name: 'Events', href: '/events' },
-  { name: 'Pricing', href: '/pricing', isPage: true },
   { name: 'Contact', href: '/contact', isPage: true },
 ];
 
